@@ -45,16 +45,12 @@ The generated database contains a `pages` table and a `pages_fts` FTS5 virtual t
 
 | Column    | Type               | Description                  |
 | --------- | ------------------ | ---------------------------- |
-| `path`    | `TEXT PRIMARY KEY`  | Page URL (e.g. `/docs/foo/`) |
-| `title`   | `TEXT`              | Title from frontmatter       |
-| `tags`    | `TEXT`              | JSON array of tags, or null  |
-| `content` | `TEXT NOT NULL`     | Raw markdown source          |
+| `path`    | `TEXT PRIMARY KEY` | Page URL (e.g. `/docs/foo/`) |
+| `title`   | `TEXT`             | Title from frontmatter       |
+| `tags`    | `TEXT`             | JSON array of tags, or null  |
+| `content` | `TEXT NOT NULL`    | Raw markdown source          |
 
 ## Requirements
 
 - Eleventy 3.x (`@11ty/eleventy ^3.0.0`)
 - Node.js with ESM support
-
-## License
-
-ISC
