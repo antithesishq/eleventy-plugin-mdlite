@@ -5,7 +5,7 @@ Eleventy plugin that copies raw markdown files to your output directory and gene
 ## Features
 
 - **Raw markdown output** — copies your `.md` source files alongside the rendered HTML so they're accessible at clean URLs (e.g. `/docs/foo.md`)
-- **SQLite index** — generates a `sqlite.db` (+ gzipped copy) containing every page's URL, title, date, content, and frontmatter
+- **SQLite index** — generates a `sqlite.db` with FTS5 full-text search containing every page's URL, title, tags, and content
 
 ## Installation
 
@@ -27,27 +27,28 @@ export default function (eleventyConfig) {
 
 ### Options
 
-| Option       | Default       | Description                                                      |
-| ------------ | ------------- | ---------------------------------------------------------------- |
-| `dbFilename` | `"sqlite.db"` | Name of the SQLite database file written to the output directory |
+| Option       | Default       | Description                                                                  |
+| ------------ | ------------- | ---------------------------------------------------------------------------- |
+| `dbFilename` | `"sqlite.db"` | Name of the SQLite database file written to the output directory             |
+| `pathPrefix` | `"/"`         | Only index pages whose URL starts with this prefix; database is placed there |
 
 ```js
 eleventyConfig.addPlugin(mdlitePlugin, {
   dbFilename: "index.db",
+  pathPrefix: "/docs",
 });
 ```
 
 ## SQLite Schema
 
-The generated database contains a single `pages` table:
+The generated database contains a `pages` table and a `pages_fts` FTS5 virtual table for full-text search:
 
-| Column        | Type               | Description                                               |
-| ------------- | ------------------ | --------------------------------------------------------- |
-| `url`         | `TEXT PRIMARY KEY` | Page URL (e.g. `/docs/foo/`)                              |
-| `title`       | `TEXT`             | Title from frontmatter                                    |
-| `date`        | `TEXT`             | ISO 8601 date string                                      |
-| `content`     | `TEXT NOT NULL`    | Markdown body (frontmatter stripped)                      |
-| `frontmatter` | `TEXT NOT NULL`    | JSON-encoded frontmatter (Eleventy internal keys removed) |
+| Column    | Type               | Description                  |
+| --------- | ------------------ | ---------------------------- |
+| `path`    | `TEXT PRIMARY KEY`  | Page URL (e.g. `/docs/foo/`) |
+| `title`   | `TEXT`              | Title from frontmatter       |
+| `tags`    | `TEXT`              | JSON array of tags, or null  |
+| `content` | `TEXT NOT NULL`     | Raw markdown source          |
 
 ## Requirements
 

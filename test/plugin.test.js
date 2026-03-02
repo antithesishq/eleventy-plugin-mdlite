@@ -1,6 +1,6 @@
 import { describe, it, before, after } from "node:test";
 import assert from "node:assert/strict";
-import { readFile, rm, access } from "node:fs/promises";
+import { readFile, rm, access, stat } from "node:fs/promises";
 import { join } from "node:path";
 import Eleventy from "@11ty/eleventy";
 import Database from "better-sqlite3";
@@ -20,9 +20,9 @@ describe("eleventy-plugin-mdlite", () => {
     await elev.write();
   });
 
-  // after(async () => {
-  //   await rm(outputDir, { recursive: true, force: true });
-  // });
+  after(async () => {
+    await rm(outputDir, { recursive: true, force: true });
+  });
 
   describe("markdown copy", () => {
     it("copies index.md to output root", async () => {
@@ -86,9 +86,7 @@ describe("eleventy-plugin-mdlite", () => {
     });
 
     it("stores null tags when page has no tags", () => {
-      const row = db
-        .prepare("SELECT tags FROM pages WHERE path = ?")
-        .get("/");
+      const row = db.prepare("SELECT tags FROM pages WHERE path = ?").get("/");
       assert.equal(row.tags, null);
     });
 
@@ -118,6 +116,66 @@ describe("eleventy-plugin-mdlite", () => {
         )
         .all("Wel*");
       assert.ok(rows.some((r) => r.path === "/"));
+    });
+  });
+});
+
+describe("eleventy-plugin-mdlite with pathPrefix", () => {
+  const prefixedOutputDir = join(fixturesDir, "_site_prefixed");
+
+  before(async () => {
+    await rm(prefixedOutputDir, { recursive: true, force: true });
+
+    const elev = new Eleventy(inputDir, prefixedOutputDir, {
+      configPath: join(fixturesDir, "eleventy.config.prefixed.js"),
+      quietMode: true,
+    });
+    await elev.write();
+  });
+
+  after(async () => {
+    await rm(prefixedOutputDir, { recursive: true, force: true });
+  });
+
+  it("places sqlite.db inside the prefixed subdirectory", async () => {
+    await access(join(prefixedOutputDir, "docs", "sqlite.db"));
+  });
+
+  it("does not place sqlite.db in the output root", async () => {
+    await assert.rejects(access(join(prefixedOutputDir, "sqlite.db")));
+  });
+
+  describe("sqlite database", () => {
+    let db;
+
+    before(() => {
+      db = new Database(join(prefixedOutputDir, "docs", "sqlite.db"), {
+        readonly: true,
+      });
+    });
+
+    after(() => {
+      db.close();
+    });
+
+    it("only contains pages under the prefix", () => {
+      const rows = db.prepare("SELECT path FROM pages ORDER BY path").all();
+      const paths = rows.map((r) => r.path);
+      assert.ok(paths.includes("/docs/foo/"));
+      assert.ok(!paths.includes("/"), "root page should be excluded");
+    });
+
+    it("does not copy markdown files outside the prefix", async () => {
+      // index.md at root should still exist (eleventy writes it) but
+      // the plugin should not have indexed it
+      const rows = db.prepare("SELECT COUNT(*) as count FROM pages").get();
+      // only docs/foo and docs/draft-post
+      for (const r of db.prepare("SELECT path FROM pages").all()) {
+        assert.ok(
+          r.path.startsWith("/docs/"),
+          `${r.path} should start with /docs/`,
+        );
+      }
     });
   });
 });

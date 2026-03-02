@@ -33,7 +33,13 @@ function createSchema(db) {
 }
 
 export default function mdlitePlugin(eleventyConfig, options = {}) {
-  const { dbFilename = "sqlite.db" } = options;
+  const { dbFilename = "sqlite.db", pathPrefix = "/" } = options;
+  // Normalize to "/prefix/" form so startsWith() works on URLs.
+  // "docs", "/docs", "/docs/" all become "/docs/"; "/" stays as "/".
+  const normalizedPrefix =
+    pathPrefix === "/"
+      ? "/"
+      : "/" + pathPrefix.replace(/^\/|\/$/g, "") + "/";
   const pageDataByInputPath = new Map();
 
   eleventyConfig.addCollection("__mdlite_capture", (collectionApi) => {
@@ -46,12 +52,21 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
   eleventyConfig.on("eleventy.after", async ({ directories, results }) => {
     const outputDir = directories.output;
 
-    // Filter to markdown inputs with valid output
+    // Filter to markdown inputs with valid output under pathPrefix
     const mdResults = results.filter((r) => {
-      return r.inputPath.endsWith(".md") && r.outputPath;
+      return (
+        r.inputPath.endsWith(".md") &&
+        r.outputPath &&
+        r.url.startsWith(normalizedPrefix)
+      );
     });
 
-    const dbPath = join(outputDir, dbFilename);
+    const dbDir =
+      normalizedPrefix === "/"
+        ? outputDir
+        : join(outputDir, normalizedPrefix.slice(1, -1));
+    const dbPath = join(dbDir, dbFilename);
+    await mkdir(dbDir, { recursive: true });
     await rm(dbPath, { force: true });
 
     const db = new Database(dbPath);
