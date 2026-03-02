@@ -50,6 +50,79 @@ The generated database contains a `pages` table and a `pages_fts` FTS5 virtual t
 | `tags`    | `TEXT`             | JSON array of tags, or null  |
 | `content` | `TEXT NOT NULL`    | Raw markdown source          |
 
+## Example Queries
+
+Open the generated database with the `sqlite3` CLI or any SQLite client:
+
+```sh
+sqlite3 _site/sqlite.db
+```
+
+**Full-text search** — find pages matching a term (results ranked by relevance):
+
+```sql
+SELECT p.path, p.title, f.rank
+FROM pages_fts f
+JOIN pages p ON p.rowid = f.rowid
+WHERE pages_fts MATCH 'deploy'
+ORDER BY f.rank;
+```
+
+**Prefix search** — match words starting with a prefix (enabled for 2- and 3-character prefixes):
+
+```sql
+SELECT p.path, p.title
+FROM pages_fts f
+JOIN pages p ON p.rowid = f.rowid
+WHERE pages_fts MATCH 'conf*';
+```
+
+**Phrase search** — match an exact phrase:
+
+```sql
+SELECT p.path, p.title
+FROM pages_fts f
+JOIN pages p ON p.rowid = f.rowid
+WHERE pages_fts MATCH '"getting started"';
+```
+
+**Boolean operators** — combine terms with AND, OR, NOT:
+
+```sql
+SELECT p.path, p.title
+FROM pages_fts f
+JOIN pages p ON p.rowid = f.rowid
+WHERE pages_fts MATCH 'api AND authentication NOT deprecated';
+```
+
+**Search within a specific column** — restrict matches to titles only:
+
+```sql
+SELECT p.path, p.title
+FROM pages_fts f
+JOIN pages p ON p.rowid = f.rowid
+WHERE pages_fts MATCH 'title:setup';
+```
+
+**Filter by tag** — find pages with a specific tag (tags are stored as JSON arrays):
+
+```sql
+SELECT path, title
+FROM pages
+WHERE tags LIKE '%"guide"%';
+```
+
+**Snippet extraction** — return a highlighted excerpt around the matching term:
+
+```sql
+SELECT p.path, snippet(pages_fts, 1, '<b>', '</b>', '...', 20) AS excerpt
+FROM pages_fts f
+JOIN pages p ON p.rowid = f.rowid
+WHERE pages_fts MATCH 'install';
+```
+
+> The FTS5 index uses the `porter` tokenizer (stemming) and `unicode61`, so a search for `"installs"` will also match `"install"`, `"installed"`, etc.
+
 ## Requirements
 
 - Eleventy 3.x (`@11ty/eleventy ^3.0.0`)
