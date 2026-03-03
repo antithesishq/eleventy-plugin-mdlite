@@ -35,10 +35,10 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(content.includes("# Foo"));
     });
 
-    it("preserves frontmatter in copied files", async () => {
+    it("strips frontmatter from copied files", async () => {
       const content = await readFile(join(outputDir, "docs/foo.md"), "utf8");
-      assert.ok(content.startsWith("---"));
-      assert.ok(content.includes("title: Foo"));
+      assert.ok(!content.includes("---"));
+      assert.ok(!content.includes("title: Foo"));
     });
   });
 
@@ -69,13 +69,13 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(paths.includes("/docs/foo/"));
     });
 
-    it("stores full raw markdown including frontmatter", () => {
+    it("stores content without frontmatter", () => {
       const row = db
         .prepare("SELECT content FROM pages WHERE path = ?")
         .get("/");
       assert.ok(row.content.includes("# Welcome"));
-      assert.ok(row.content.includes("---"));
-      assert.ok(row.content.includes("title: Home"));
+      assert.ok(!row.content.includes("---"));
+      assert.ok(!row.content.includes("title: Home"));
     });
 
     it("stores tags as JSON array", () => {

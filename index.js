@@ -32,14 +32,25 @@ function createSchema(db) {
   `);
 }
 
+function stripFrontmatter(raw) {
+  if (!raw.startsWith("---")) {
+    return raw;
+  }
+  // Find the closing --- delimiter (start at 3 to skip past the opening ---)
+  const end = raw.indexOf("---", 3);
+  if (end === -1) {
+    return raw;
+  }
+  // Slice past the closing --- and trim the leading newline
+  return raw.slice(end + 3).replace(/^\r?\n/, "");
+}
+
 export default function mdlitePlugin(eleventyConfig, options = {}) {
-  const { dbFilename = "sqlite.db", pathPrefix = "/" } = options;
+  const { dbFilename = "sqlite.db", pathPrefix = "/", header = "" } = options;
   // Normalize to "/prefix/" form so startsWith() works on URLs.
   // "docs", "/docs", "/docs/" all become "/docs/"; "/" stays as "/".
   const normalizedPrefix =
-    pathPrefix === "/"
-      ? "/"
-      : "/" + pathPrefix.replace(/^\/|\/$/g, "") + "/";
+    pathPrefix === "/" ? "/" : "/" + pathPrefix.replace(/^\/|\/$/g, "") + "/";
   const pageDataByInputPath = new Map();
 
   eleventyConfig.addCollection("__mdlite_capture", (collectionApi) => {
@@ -79,9 +90,10 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
     for (const result of mdResults) {
       const data = pageDataByInputPath.get(result.inputPath) || {};
       const raw = await readFile(result.inputPath, "utf8");
+      const content = stripFrontmatter(raw);
       const tags = Array.isArray(data.tags) ? JSON.stringify(data.tags) : null;
 
-      // Copy raw markdown to output: /docs/foo/ → _site/docs/foo.md
+      // Copy markdown to output: /docs/foo/ → _site/docs/foo.md
       let mdOutputPath;
       if (result.url.endsWith("/")) {
         const trimmed = result.url.slice(0, -1) || "/index";
@@ -90,9 +102,10 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
         mdOutputPath = join(outputDir, result.url + ".md");
       }
       await mkdir(dirname(mdOutputPath), { recursive: true });
-      await writeFile(mdOutputPath, raw);
+      const output = header ? header + "\n" + content : content;
+      await writeFile(mdOutputPath, output);
 
-      insert.run(result.url, data.title ?? null, tags, raw);
+      insert.run(result.url, data.title ?? null, tags, content);
     }
 
     db.exec("VACUUM");

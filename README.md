@@ -5,6 +5,8 @@ Eleventy plugin that copies raw markdown files to your output directory and gene
 ## Features
 
 - **Raw markdown output** — copies your `.md` source files alongside the rendered HTML so they're accessible at clean URLs (e.g. `/docs/foo.md`)
+- **Frontmatter stripping** — YAML frontmatter is automatically removed from output files and database content
+- **Custom header injection** — optionally prepend a header (e.g. a comment or license notice) to each output markdown file
 - **SQLite index** — generates a `sqlite.db` with FTS5 full-text search containing every page's URL, title, tags, and content
 
 ## Installation
@@ -31,11 +33,13 @@ export default function (eleventyConfig) {
 | ------------ | ------------- | ---------------------------------------------------------------------------- |
 | `dbFilename` | `"sqlite.db"` | Name of the SQLite database file written to the output directory             |
 | `pathPrefix` | `"/"`         | Only index pages whose URL starts with this prefix; database is placed there |
+| `header`     | `""`          | String prepended to each output markdown file (e.g. a comment or notice)     |
 
 ```js
 eleventyConfig.addPlugin(mdlitePlugin, {
   dbFilename: "index.db",
   pathPrefix: "/docs",
+  header: "<!-- This file was generated automatically. Do not edit. -->",
 });
 ```
 
@@ -48,7 +52,7 @@ The generated database contains a `pages` table and a `pages_fts` FTS5 virtual t
 | `path`    | `TEXT PRIMARY KEY` | Page URL (e.g. `/docs/foo/`) |
 | `title`   | `TEXT`             | Title from frontmatter       |
 | `tags`    | `TEXT`             | JSON array of tags, or null  |
-| `content` | `TEXT NOT NULL`    | Raw markdown source          |
+| `content` | `TEXT NOT NULL`    | Markdown source (frontmatter stripped) |
 
 ## Example Queries
 
