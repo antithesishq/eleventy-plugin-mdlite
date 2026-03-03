@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-mdlite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Eleventy plugin that copies raw markdown to output and generates a SQLite index",
   "main": "index.js",
