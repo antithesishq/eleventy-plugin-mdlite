@@ -15,9 +15,9 @@ Expanded snippet value
 This content was included from a shared file.
 
 
-const x = 1;
+{% highlight js %}const x = 1;{% endhighlight %}
 
-
+{% pic "/image.png" %}
 
 Below is a fenced code block with Liquid-like syntax that must be preserved:
 

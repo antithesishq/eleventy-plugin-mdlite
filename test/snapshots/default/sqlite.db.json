@@ -11,7 +11,7 @@
         "path": "/",
         "title": "Home",
         "tags": null,
-        "content": "# Welcome\n\nThis is the home page.\n\nExpanded snippet value\n\nEmail support@example.com\n\n\n\nExpanded snippet value\n\nThis content was included from a shared file.\n\n\nconst x = 1;\n\n\n\nBelow is a fenced code block with Liquid-like syntax that must be preserved:\n\n\n```yaml\npassword: ${{ secrets.GH_PAT }}\n```\n\n```cpp\nSOMETIMES(x > 0, \"positive input\", {{\"input\", x}});\n```\n\n"
+        "content": "# Welcome\n\nThis is the home page.\n\nExpanded snippet value\n\nEmail support@example.com\n\n\n\nExpanded snippet value\n\nThis content was included from a shared file.\n\n\n{% highlight js %}const x = 1;{% endhighlight %}\n\n{% pic \"/image.png\" %}\n\nBelow is a fenced code block with Liquid-like syntax that must be preserved:\n\n\n```yaml\npassword: ${{ secrets.GH_PAT }}\n```\n\n```cpp\nSOMETIMES(x > 0, \"positive input\", {{\"input\", x}});\n```\n\n"
       },
       {
         "path": "/docs/directives/",

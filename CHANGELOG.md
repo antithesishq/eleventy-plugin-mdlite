@@ -2,13 +2,12 @@
 
 ## Unreleased
 
-- Process Liquid tags in markdown output using page data
-- Convert paired shortcodes to markdown code blocks (inline or fenced)
-- Strip unpaired shortcodes from markdown output
+- Process Liquid tags and includes in markdown output using page data
+- Skip empty pages when building the search index
 - Configure BM25 ranking weights for full-text search
 - Optimize FTS index before closing the database
-- Skip empty pages when building the search index
-- Remove full text search prefixing
+- Remove full-text search prefix matching
+- Add snapshot tests
 
 ## 0.2.0 2026-03-03
 

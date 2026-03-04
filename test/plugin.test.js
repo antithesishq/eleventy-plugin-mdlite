@@ -103,27 +103,19 @@ describe("eleventy-plugin-mdlite", () => {
       );
     });
 
-    it("renders paired shortcode body content without wrapper tags", async () => {
+    it("preserves paired shortcode tags and body content", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        content.includes("const x = 1;"),
-        "paired shortcode body content should be in output",
-      );
-      assert.ok(
-        !content.includes("{% highlight"),
-        "output should not contain paired shortcode opening tag",
-      );
-      assert.ok(
-        !content.includes("{% endhighlight"),
-        "output should not contain paired shortcode closing tag",
+        content.includes("{% highlight js %}const x = 1;{% endhighlight %}"),
+        "paired shortcode tags and body content should be preserved",
       );
     });
 
-    it("strips unpaired shortcode tags", async () => {
+    it("preserves unpaired shortcode tags", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        !content.includes("{% pic"),
-        "output should not contain unpaired shortcode tag",
+        content.includes('{% pic "/image.png" %}'),
+        "unpaired shortcode tag should be preserved",
       );
     });
 

@@ -34,9 +34,11 @@ function createSchema(db) {
   `);
 }
 
-class NoopTag extends Tag {
+class PassthroughTag extends Tag {
   parse() {}
-  *render() {}
+  *render(context, emitter) {
+    emitter.write(this.token.getText());
+  }
 }
 
 function stripFrontmatter(raw) {
@@ -81,15 +83,15 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
         if (val !== undefined) {
           return val;
         }
-        return NoopTag;
+        return PassthroughTag;
       },
     });
 
     for (const name of Object.keys(eleventyConfig.getPairedShortcodes())) {
-      liquid.registerTag(name, NoopTag);
+      liquid.registerTag(name, PassthroughTag);
     }
     for (const name of Object.keys(eleventyConfig.getShortcodes())) {
-      liquid.registerTag(name, NoopTag);
+      liquid.registerTag(name, PassthroughTag);
     }
 
     const outputDir = directories.output;
