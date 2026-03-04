@@ -4,6 +4,7 @@
 
 - Strip markdown formatting from FTS index for better search quality
 - Skip empty pages when building the search index
+- Remove full text search prefixing
 
 ## 0.2.0 2026-03-03
 
