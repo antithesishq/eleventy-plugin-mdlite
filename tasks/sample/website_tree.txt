@@ -1,0 +1,1152 @@
+.
+├── 404.html
+├── ai
+│   ├── images
+│   │   ├── ai_thumbnail.png
+│   │   ├── ethereum_danny.jpg
+│   │   ├── properties.png
+│   │   └── runs_history.png
+│   └── index.html
+├── assets
+│   └── instrumentation
+│       └── libvoidstar.so
+├── author
+│   └── index.html
+├── blog
+│   ├── 2025
+│   │   ├── ai_testing
+│   │   │   ├── images
+│   │   │   │   └── cover.jpg
+│   │   │   └── index.md
+│   │   ├── alchemical_intelligence
+│   │   │   ├── images
+│   │   │   │   └── cover.jpg
+│   │   │   └── index.md
+│   │   ├── antithesis_for_founders
+│   │   │   ├── images
+│   │   │   │   └── skyscraper_snouty.jpg
+│   │   │   └── index.md
+│   │   ├── bugbash_2025
+│   │   │   ├── ankush_desai
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   ├── ben_eggers
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   ├── kyle_kingsbury
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   ├── lawrie_green
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   ├── mike_curtiss
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   ├── mitchell_hashimoto
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   ├── ryan_worl
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   ├── will_wilson
+│   │   │   │   ├── images
+│   │   │   │   │   └── cover.jpg
+│   │   │   │   └── index.md
+│   │   │   └── zac_hatfield_dodds
+│   │   │       ├── images
+│   │   │       │   └── cover.jpg
+│   │   │       └── index.md
+│   │   ├── compiler_bug
+│   │   │   ├── images
+│   │   │   │   └── pinball.jpg
+│   │   │   └── index.md
+│   │   ├── findability
+│   │   │   ├── images
+│   │   │   │   ├── cover.png
+│   │   │   │   ├── findability_graph.png
+│   │   │   │   ├── intervals.png
+│   │   │   │   ├── multiverse_map.png
+│   │   │   │   ├── subtrees_highlighted.png
+│   │   │   │   └── subtrees.png
+│   │   │   └── index.md
+│   │   ├── findings
+│   │   │   ├── images
+│   │   │   │   ├── bad_shift.png
+│   │   │   │   ├── good_shift.png
+│   │   │   │   └── snouty_snapshot.jpg
+│   │   │   └── index.md
+│   │   ├── fix_the_new_things_first
+│   │   │   ├── images
+│   │   │   │   ├── buckets.jpg
+│   │   │   │   └── cover.jpg
+│   │   │   └── index.md
+│   │   ├── formance
+│   │   │   ├── images
+│   │   │   │   └── cover.jpg
+│   │   │   └── index.md
+│   │   ├── gradius
+│   │   │   ├── images
+│   │   │   │   ├── gradius-gameplay.png
+│   │   │   │   ├── gradius-not-dying.png
+│   │   │   │   └── gradius_world.jpg
+│   │   │   └── index.md
+│   │   ├── kubernetes_launch
+│   │   │   ├── images
+│   │   │   │   └── cover.png
+│   │   │   └── index.md
+│   │   ├── lessons_from_launch
+│   │   │   ├── images
+│   │   │   │   ├── antithesis_building_sign.jpg
+│   │   │   │   └── time_travel.jpg
+│   │   │   └── index.md
+│   │   ├── logs_explorer
+│   │   │   ├── images
+│   │   │   │   ├── cover.jpg
+│   │   │   │   ├── empty_tree.png
+│   │   │   │   ├── eventful_tree.png
+│   │   │   │   └── logs_explorer.png
+│   │   │   └── index.md
+│   │   ├── metroid
+│   │   │   ├── images
+│   │   │   │   ├── cover.png
+│   │   │   │   ├── m10.png
+│   │   │   │   ├── m11.png
+│   │   │   │   ├── m12.png
+│   │   │   │   ├── m13.png
+│   │   │   │   ├── m14.png
+│   │   │   │   ├── m1.png
+│   │   │   │   ├── m2.png
+│   │   │   │   ├── m3.png
+│   │   │   │   ├── m4.jpg
+│   │   │   │   ├── m5.png
+│   │   │   │   ├── m6.png
+│   │   │   │   ├── m7.png
+│   │   │   │   ├── m8.png
+│   │   │   │   └── m9.png
+│   │   │   └── index.md
+│   │   ├── mysten_interview
+│   │   │   ├── images
+│   │   │   │   ├── cover.jpg
+│   │   │   │   └── mysten_probability_chart.png
+│   │   │   └── index.md
+│   │   ├── oss_pledge_2025
+│   │   │   └── index.md
+│   │   ├── pingthings
+│   │   │   ├── images
+│   │   │   │   └── cover.jpg
+│   │   │   └── index.md
+│   │   ├── psn_outage
+│   │   │   ├── images
+│   │   │   │   ├── ps_bugs.jpg
+│   │   │   │   └── psn_downdetector.png
+│   │   │   └── index.md
+│   │   ├── semi_formal_proofs
+│   │   │   ├── images
+│   │   │   │   ├── buggy_code.png
+│   │   │   │   ├── cover.jpg
+│   │   │   │   ├── obligation_code.png
+│   │   │   │   ├── scalability_graph.png
+│   │   │   │   ├── software_verification.png
+│   │   │   │   └── strongly_typed_languages_struct.png
+│   │   │   └── index.md
+│   │   ├── series_a
+│   │   │   ├── images
+│   │   │   │   └── cover.png
+│   │   │   └── index.md
+│   │   ├── synadia
+│   │   │   ├── images
+│   │   │   │   └── cover.jpg
+│   │   │   └── index.md
+│   │   └── testing_pangolin
+│   │       ├── images
+│   │       │   ├── museum_night.jpg
+│   │       │   └── no_bugs_in_prod.png
+│   │       └── index.md
+│   ├── 2026
+│   │   ├── readyset
+│   │   │   ├── images
+│   │   │   │   ├── cover.jpg
+│   │   │   │   ├── michael.jpg
+│   │   │   │   ├── querypilot-architecture.png
+│   │   │   │   └── sequence-diagram.png
+│   │   │   └── index.md
+│   │   ├── rust_cpp
+│   │   │   ├── images
+│   │   │   │   ├── channels.png
+│   │   │   │   ├── cover.jpg
+│   │   │   │   ├── fuzzer-bytes-controller.png
+│   │   │   │   ├── fuzzer-bytes.png
+│   │   │   │   └── sync-async.png
+│   │   │   └── index.md
+│   │   └── rust_formal_methods
+│   │       ├── images
+│   │       │   ├── anakin.jpg
+│   │       │   ├── cover.jpg
+│   │       │   └── palpatine.jpg
+│   │       └── index.md
+│   ├── ag8bi
+│   │   ├── images
+│   │   │   └── 8bit-world.jpg
+│   │   └── index.md
+│   ├── autonomous_testing
+│   │   ├── images
+│   │   │   ├── devops.png
+│   │   │   ├── devops_test.png
+│   │   │   └── snouty_zoom_city.jpg
+│   │   └── index.md
+│   ├── blog.json
+│   ├── castlevania
+│   │   ├── images
+│   │   │   ├── castlevania_moon.jpg
+│   │   │   ├── castlevania_stairs.jpg
+│   │   │   ├── danger_zone.png
+│   │   │   ├── dead_simon.png
+│   │   │   ├── heatmap.png
+│   │   │   ├── stompers_coarse_grid.png
+│   │   │   └── stompers_fine_grid.png
+│   │   └── index.md
+│   ├── deterministic_hypervisor
+│   │   ├── images
+│   │   │   ├── architecture.png
+│   │   │   ├── determinator_robot.jpg
+│   │   │   ├── image1.png
+│   │   │   ├── image2.png
+│   │   │   ├── image3.png
+│   │   │   └── image4.png
+│   │   └── index.md
+│   ├── first_bug
+│   │   ├── images
+│   │   │   ├── celebrating_bugs.jpg
+│   │   │   └── maturity_model.svg
+│   │   └── index.md
+│   ├── is_something_bugging_you
+│   │   ├── images
+│   │   │   ├── aphyr_twitter_fdb.png
+│   │   │   ├── poison spikes.png
+│   │   │   ├── robo_bugs_opt.jpg
+│   │   │   ├── Survivorship-bias.svg
+│   │   │   └── wrong problem.jpeg
+│   │   └── index.md
+│   ├── madness
+│   │   ├── images
+│   │   │   ├── antarctic_explorer_with_anteater.png
+│   │   │   ├── anteater_city.png
+│   │   │   ├── anteater_vs_monster.png
+│   │   │   ├── lovecraftian_horror.png
+│   │   │   ├── purple_anteater_antarctica.png
+│   │   │   └── purple_anteater_frozen_wastes.png
+│   │   └── index.md
+│   ├── mongo_bug
+│   │   ├── images
+│   │   │   ├── bug_catch.jpg
+│   │   │   └── buglikelihood.jpg
+│   │   └── index.md
+│   ├── multiverse_debugging
+│   │   ├── images
+│   │   │   ├── snouty-multiverse.png
+│   │   │   └── snouty-multiverse-v.jpg
+│   │   └── index.md
+│   ├── notebook_interfaces
+│   │   ├── images
+│   │   │   ├── demo_report.png
+│   │   │   └── reactive-snouty.jpg
+│   │   └── index.md
+│   ├── osgp2024
+│   │   ├── images
+│   │   │   └── bug_on_bg_opt.jpg
+│   │   └── index.md
+│   ├── oss_pledge
+│   │   ├── images
+│   │   │   └── 001.jpg
+│   │   └── index.md
+│   ├── preventing_bugs
+│   │   ├── images
+│   │   │   └── bug_funnel.png
+│   │   └── index.md
+│   ├── reliability_series_part_1
+│   │   ├── images
+│   │   │   └── 001.jpg
+│   │   └── index.md
+│   ├── sdtalk
+│   │   ├── images
+│   │   │   ├── marioheatmap.jpg
+│   │   │   └── snoutyplays.jpg
+│   │   └── index.md
+│   ├── test_composer
+│   │   ├── images
+│   │   │   ├── branching_a_b.png
+│   │   │   ├── fail_dice.jpg
+│   │   │   └── snouty_workload.jpg
+│   │   └── index.md
+│   ├── testing_pyramid
+│   │   ├── images
+│   │   │   ├── 001.jpg
+│   │   │   └── 002.jpg
+│   │   └── index.md
+│   ├── unknown_unknowns
+│   │   ├── images
+│   │   │   └── 001.jpg
+│   │   └── index.md
+│   ├── worst_bug
+│   │   ├── images
+│   │   │   ├── bug_idea.jpg
+│   │   │   ├── bug_surprise.jpg
+│   │   │   └── red_behind_green.jpg
+│   │   └── index.md
+│   └── zelda
+│       ├── images
+│       │   ├── zelda1.jpg
+│       │   ├── zelda-final.jpg
+│       │   └── zelda-world.jpg
+│       └── index.md
+├── blog.html
+├── book-a-demo.html
+├── brand.html
+├── bugbash
+│   └── conference2026
+│       ├── assets
+│       │   ├── fonts
+│       │   │   ├── F37Judge-Bold.woff2
+│       │   │   └── F37Judge-Medium.woff2
+│       │   ├── headshots
+│       │   │   ├── ankush_desai.png
+│       │   │   ├── ben_eggers.png
+│       │   │   ├── brian_potter.png
+│       │   │   ├── chaitanya_bhandari.png
+│       │   │   ├── corwin.png
+│       │   │   ├── deb_chachra.png
+│       │   │   ├── frank_mcsherry.png
+│       │   │   ├── matt_barrett.png
+│       │   │   ├── peter_alvaro.png
+│       │   │   ├── ron_minsky.png
+│       │   │   ├── steve_klabnik.png
+│       │   │   └── will_wilson.png
+│       │   └── icons
+│       │       ├── bug-bash-a.svg
+│       │       ├── bug-bash-b.svg
+│       │       ├── bug-bash-g.svg
+│       │       ├── bug-bash-h.svg
+│       │       ├── bug-bash-s.svg
+│       │       ├── bug-bash-u.svg
+│       │       ├── bug.svg
+│       │       ├── bug_trail_1.svg
+│       │       ├── bug_trail_2.svg
+│       │       ├── console-icon-olive.svg
+│       │       ├── megaphone-icon.svg
+│       │       ├── play-button-bordeaux.svg
+│       │       ├── play-button-dark-sky.svg
+│       │       ├── play-icon-purple-inverted.svg
+│       │       ├── play-icon-purple.svg
+│       │       ├── pointer-icon-deep-purple.svg
+│       │       ├── question-mark-bordeaux.svg
+│       │       └── question-mark-deep-purple.svg
+│       ├── index.html
+│       ├── speakers.html
+│       └── styles.css
+├── case_studies
+│   ├── case_studies.json
+│   ├── ethereum_merge
+│   │   └── ethereum_merge.md
+│   ├── formance.md
+│   ├── jane_street.md
+│   ├── mongodb_jesse.md
+│   ├── mongodb_productivity
+│   │   ├── images
+│   │   │   └── mongo_figure_1.png
+│   │   └── mongodb_productivity.md
+│   ├── mysten.md
+│   ├── orbitinghail_carl.md
+│   ├── palantir.md
+│   ├── ramp.md
+│   ├── stardog.md
+│   ├── synadia.md
+│   ├── turso.md
+│   ├── warpstream_cloud_infra.md
+│   └── warpstream.md
+├── company
+│   ├── ashby.css
+│   ├── backstory.html
+│   ├── careers.html
+│   ├── company.json
+│   ├── leadership.html
+│   ├── no_ghost_policy.md
+│   └── osspledge.json
+├── contact.html
+├── css
+│   ├── Antithesis_mono_VF_Italic.woff2
+│   ├── Antithesis_mono_VF_Upright.woff2
+│   ├── github.css
+│   ├── print.css
+│   ├── reset.css
+│   ├── SerialPremium-SemiBold.woff2
+│   ├── TT_Interphases_Pro_Variable.woff2
+│   └── website-general.css
+├── _data
+│   ├── antithesis_different.json
+│   ├── antithesis_what.json
+│   ├── antithesis_working.json
+│   ├── docsub.json
+│   ├── fintech_features.json
+│   ├── leadership.json
+│   ├── problems.json
+│   ├── site.json
+│   └── why_antithesis.json
+├── default.nix
+├── docs
+│   ├── best_practices
+│   │   ├── docker_best_practices.md
+│   │   ├── index.md
+│   │   ├── is_antithesis_working.md
+│   │   ├── k8s_best_practices.md
+│   │   ├── optimizing.md
+│   │   ├── sizing.md
+│   │   ├── sizing_photos
+│   │   │   ├── bugcost.png
+│   │   │   └── lifecycle.png
+│   │   └── sometimes_assertions.md
+│   ├── concepts_separator.md
+│   ├── configuration
+│   │   ├── auth_images
+│   │   │   ├── admin_v1.png
+│   │   │   └── non-admin_v1.png
+│   │   ├── auth.md
+│   │   └── index.md
+│   ├── configuration_separator.md
+│   ├── environment
+│   │   ├── environment_pics
+│   │   │   ├── bin_env_logging.png
+│   │   │   ├── default_env_logging.png
+│   │   │   └── json_env_logging.png
+│   │   ├── fault_injection_images
+│   │   │   └── overlapping_quiet_periods.png
+│   │   ├── fault_injection.md
+│   │   ├── index.md
+│   │   └── the_antithesis_environment.md
+│   ├── faq
+│   │   ├── customer_faq.md
+│   │   └── poc_faq.md
+│   ├── faq_separator.md
+│   ├── get_started_separator.md
+│   ├── getting_started
+│   │   ├── index.md
+│   │   ├── setup_k8s.md
+│   │   └── setup.md
+│   ├── index.md
+│   ├── instrumentation
+│   │   └── index.md
+│   ├── introduction
+│   │   └── how_antithesis_works.md
+│   ├── intro_separator.md
+│   ├── logs_explorer
+│   │   ├── index.md
+│   │   └── search_images
+│   │       ├── eventful_map.png
+│   │       ├── full_dashboard.png
+│   │       ├── multiverse_map.png
+│   │       ├── session_id.png
+│   │       └── triage_report_session_id.png
+│   ├── multiverse_debugging
+│   │   ├── antithesis_notebook.md
+│   │   ├── bash_env.md
+│   │   ├── cookbook.md
+│   │   ├── event_sets.md
+│   │   ├── index.md
+│   │   ├── moment_branch.md
+│   │   ├── multiverse_images
+│   │   │   ├── action_ui.png
+│   │   │   ├── expectation_error.png
+│   │   │   ├── flame.png
+│   │   │   ├── ill1.png
+│   │   │   ├── ill_concrete.png
+│   │   │   ├── notebook_scope_frozen.png
+│   │   │   ├── sequence_toolbar.png
+│   │   │   └── the_notebook.png
+│   │   └── overview.md
+│   ├── product_separator.md
+│   ├── properties_assertions
+│   │   ├── assertions.md
+│   │   ├── index.md
+│   │   ├── properties.md
+│   │   └── reliability_properties.md
+│   ├── reference
+│   │   └── dependencies.md
+│   ├── reference_separator.md
+│   ├── release_notes.md
+│   ├── release_notes_separator.md
+│   ├── reports
+│   │   ├── bug.md
+│   │   ├── bug_report_images
+│   │   │   ├── context.png
+│   │   │   ├── logs.png
+│   │   │   ├── statistical.png
+│   │   │   ├── summary.png
+│   │   │   └── time_series.png
+│   │   ├── bug_separator.md
+│   │   ├── context_instance.md
+│   │   ├── environment.md
+│   │   ├── findings_cookbook.md
+│   │   ├── findings_images
+│   │   │   ├── detail_artifacts.png
+│   │   │   ├── detail_copy_moment.png
+│   │   │   ├── detail_examples.png
+│   │   │   ├── detail_history.png
+│   │   │   ├── detail_property.png
+│   │   │   ├── findings_types.png
+│   │   │   ├── findings_view.png
+│   │   │   ├── look_into_finding.png
+│   │   │   ├── ongoing.png
+│   │   │   └── rarity_decay.png
+│   │   ├── findings.md
+│   │   ├── index.md
+│   │   ├── likelihood.md
+│   │   ├── properties.md
+│   │   ├── statistical.md
+│   │   ├── triage_images
+│   │   │   ├── always_fail.png
+│   │   │   ├── always_pass.png
+│   │   │   ├── always_propertygroup_expanded.png
+│   │   │   ├── artifacts.png
+│   │   │   ├── bug_triage_expanded.png
+│   │   │   ├── bug_triage.png
+│   │   │   ├── copymoment_from_sequence.png
+│   │   │   ├── copy_moment.png
+│   │   │   ├── copymoment.png
+│   │   │   ├── details.png
+│   │   │   ├── environment.png
+│   │   │   ├── failing_property.png
+│   │   │   ├── logs.png
+│   │   │   ├── numeric_pass.png
+│   │   │   ├── properties1.png
+│   │   │   ├── properties2.png
+│   │   │   ├── properties3.png
+│   │   │   ├── properties_compressed.png
+│   │   │   ├── properties_numeric.png
+│   │   │   ├── sometimes_fail.png
+│   │   │   ├── sometimes_pass.png
+│   │   │   ├── top_level.png
+│   │   │   └── utilization.png
+│   │   ├── triage.md
+│   │   ├── triage_separator.md
+│   │   └── utilization.md
+│   ├── test_templates
+│   │   ├── composer_example.md
+│   │   ├── first_test.md
+│   │   ├── index.md
+│   │   ├── test_best_practices.md
+│   │   ├── test_composer_images
+│   │   │   ├── test_composer_directories.png
+│   │   │   ├── test_composer_eventually.png
+│   │   │   ├── test_composer_overview.png
+│   │   │   └── turso_composed.png
+│   │   ├── test_composer_reference.md
+│   │   └── testing_locally.md
+│   ├── tutorials
+│   │   ├── cluster-setup.md
+│   │   ├── cluster-test.md
+│   │   ├── etcd_docker.md
+│   │   ├── etcd_kubernetes.md
+│   │   ├── index.md
+│   │   ├── k8s-cluster-setup.md
+│   │   └── k8s-cluster-test.md
+│   ├── using_antithesis
+│   │   ├── ci.md
+│   │   ├── cpuid.md
+│   │   ├── discord-slack-images
+│   │   │   ├── discord-image.png
+│   │   │   └── slack-image.png
+│   │   ├── discord_slack.md
+│   │   ├── images
+│   │   │   └── github_pat_token_permissions.png
+│   │   ├── issue-tracker-images
+│   │   │   ├── finding-page.png
+│   │   │   ├── jira-export-xml-option.png
+│   │   │   ├── jira-xml.png
+│   │   │   └── selected-findings-page.png
+│   │   ├── issue_tracker_integration.md
+│   │   ├── sdk
+│   │   │   ├── cpp
+│   │   │   │   ├── assert.md
+│   │   │   │   ├── example.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── instrumentation.md
+│   │   │   │   ├── lifecycle.md
+│   │   │   │   ├── old_c_instrumentation.md
+│   │   │   │   └── random.md
+│   │   │   ├── c_sdk.md
+│   │   │   ├── dotnet
+│   │   │   │   ├── assert.md
+│   │   │   │   ├── example.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── instrumentation.md
+│   │   │   │   ├── lifecycle.md
+│   │   │   │   └── random.md
+│   │   │   ├── fallback
+│   │   │   │   ├── assert.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── lifecycle.md
+│   │   │   │   └── schema.md
+│   │   │   ├── go
+│   │   │   │   ├── assert.md
+│   │   │   │   ├── example.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── instrumentor.md
+│   │   │   │   ├── lifecycle.md
+│   │   │   │   └── random.md
+│   │   │   ├── index.md
+│   │   │   ├── java
+│   │   │   │   ├── assert.md
+│   │   │   │   ├── example.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── instrumentation.md
+│   │   │   │   ├── lifecycle.md
+│   │   │   │   └── random.md
+│   │   │   ├── javascript_sdk.md
+│   │   │   ├── python
+│   │   │   │   ├── assert.md
+│   │   │   │   ├── example.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── lifecycle.md
+│   │   │   │   └── random.md
+│   │   │   └── rust
+│   │   │       ├── assert.md
+│   │   │       ├── example.md
+│   │   │       ├── index.md
+│   │   │       ├── instrumentation.md
+│   │   │       ├── lifecycle.md
+│   │   │       └── random.md
+│   │   └── tooling_integrations.md
+│   └── webhook
+│       ├── index.md
+│       ├── k8s_test_webhook.md
+│       ├── notebook_webhook.md
+│       ├── test_webhook.md
+│       └── webhook_reference.md
+├── eleventy.config.mjs
+├── eleventy-plugin-mdlite-0.2.0.tgz
+├── feed.liquid
+├── files
+│   ├── Antithesis_onboarding_guide_template_self_serve_poc.pdf
+│   ├── Antithesis_poc_core_concepts.pdf
+│   ├── blockchain-bug-cases.pdf
+│   └── finding-bugs-in-graph-databases.pdf
+├── get-stickers.html
+├── images
+│   ├── android-chrome-192x192.png
+│   ├── android-chrome-512x512.png
+│   ├── animations
+│   │   └── bugbash2026_banner_anim.json
+│   ├── apple-touch-icon.png
+│   ├── brand
+│   │   ├── antithesis_logo_ universal_color_trim.png
+│   │   ├── antithesis_mark_800_dark.png
+│   │   ├── antithesis_mark_800.png
+│   │   └── brand_snouty.png
+│   ├── demo
+│   │   ├── antithesis_hero_saas.png
+│   │   └── report-preview-prop.png
+│   ├── diagrams
+│   │   └── architecture01.png
+│   ├── favicon.ico
+│   ├── favicon.svg
+│   ├── features
+│   │   ├── bug-likelihood.png
+│   │   ├── debugging.png
+│   │   ├── log_explorer.png
+│   │   ├── properties.png
+│   │   └── test-run.png
+│   ├── illustrations
+│   │   ├── anteater_debug.png
+│   │   ├── anteater_debug.webp
+│   │   ├── back-story-snouty.png
+│   │   ├── catch-bugs.png
+│   │   ├── difference
+│   │   │   ├── automated_testing.jpg
+│   │   │   ├── chaos_testing.jpg
+│   │   │   ├── end_to_end_testing.jpg
+│   │   │   ├── fuzzing.jpg
+│   │   │   ├── pbt.jpg
+│   │   │   └── unit_testing.jpg
+│   │   ├── finding_bug
+│   │   │   ├── ants_in_tank.jpg
+│   │   │   ├── ants-vs-snouty.jpg
+│   │   │   └── finding_bug_001.jpg
+│   │   ├── problems
+│   │   │   ├── bug.svg
+│   │   │   ├── bug_thin.svg
+│   │   │   ├── eye.svg
+│   │   │   ├── money.svg
+│   │   │   ├── report.svg
+│   │   │   ├── time.svg
+│   │   │   └── unknown.svg
+│   │   └── what
+│   │       ├── autonomous_searching.jpg
+│   │       ├── debug.jpg
+│   │       ├── reliability_platform.jpg
+│   │       ├── reproducibility.jpg
+│   │       ├── simulated_environment.jpg
+│   │       └── states.jpg
+│   ├── logos
+│   │   ├── antithesis-logo-variations.png
+│   │   ├── cncf_white.svg
+│   │   ├── confluent_white.svg
+│   │   ├── etcd_white.svg
+│   │   ├── ethereum_white.svg
+│   │   ├── formance_white.svg
+│   │   ├── h32
+│   │   │   ├── confluent-32-white.svg
+│   │   │   ├── ethereum-32-white.svg
+│   │   │   ├── mongodb-32-white.svg
+│   │   │   ├── mystenlabs-32-white.svg
+│   │   │   ├── palantir-32-white.svg
+│   │   │   └── ramp-32-white.svg
+│   │   ├── mongo_white.svg
+│   │   ├── mystenlabs_white.svg
+│   │   ├── orbitinghail_white.svg
+│   │   ├── palantir_white.svg
+│   │   ├── ramp_white.svg
+│   │   ├── stardog_white.svg
+│   │   ├── synadia_white.svg
+│   │   ├── turso_white.svg
+│   │   ├── warpstream_2_white.svg
+│   │   └── warpstream_white.svg
+│   ├── marquee-logos
+│   │   ├── aerospike_white.svg
+│   │   ├── appian_white.svg
+│   │   ├── avalanche_white.svg
+│   │   ├── buf_white.svg
+│   │   ├── cardano_white.svg
+│   │   ├── cncf_white.svg
+│   │   ├── confluent_white.svg
+│   │   ├── etcd_white.svg
+│   │   ├── ethereum_white.svg
+│   │   ├── filecoin_white.svg
+│   │   ├── flyio_white.svg
+│   │   ├── formance_white.svg
+│   │   ├── jane_street_white.svg
+│   │   ├── mongo_white.svg
+│   │   ├── mystenlabs_white.svg
+│   │   ├── orbitinghail_white.svg
+│   │   ├── palantir_white.svg
+│   │   ├── plasma_white.svg
+│   │   ├── ramp_white.svg
+│   │   ├── readyset_white.svg
+│   │   ├── ripple_white.svg
+│   │   ├── sui_white.svg
+│   │   ├── synadia_white.svg
+│   │   ├── tigerbeetle_white.svg
+│   │   ├── tigris_white.svg
+│   │   ├── tursodb_white.svg
+│   │   ├── warpstream_white.svg
+│   │   └── zircuit_white.svg
+│   ├── notebook-favicon.ico
+│   ├── notebook-favicon.svg
+│   ├── Open-graph-image-p-1080.png
+│   ├── Open-graph-image-p-500.png
+│   ├── Open-graph-image-p-800.png
+│   ├── Open-graph-image.png
+│   ├── patterns
+│   │   └── space_pattern.jpg
+│   ├── people
+│   │   ├── 001_marco_primi.jpg
+│   │   ├── 001_will.jpg
+│   │   ├── 002_dave.jpg
+│   │   ├── 003_harrison.jpg
+│   │   ├── 004_brian.jpg
+│   │   ├── 005_alex.jpg
+│   │   ├── 006_hao.jpg
+│   │   ├── 007_jeremy.jpg
+│   │   ├── 008_bill.jpg
+│   │   ├── 011_vlad.jpg
+│   │   ├── 012_max.jpg
+│   │   ├── 013_paul.jpg
+│   │   ├── 014_meg.jpg
+│   │   ├── 017_david.jpg
+│   │   ├── 019_ben.jpg
+│   │   ├── 020_luis.jpg
+│   │   ├── 022_marcus.jpg
+│   │   ├── 026_richard.jpg
+│   │   ├── 027_nick.jpg
+│   │   ├── 030_jonathan.jpg
+│   │   ├── 031_jack.jpg
+│   │   ├── 033_luis.jpg
+│   │   ├── 034_david.jpg
+│   │   ├── 035_javi.jpg
+│   │   ├── 036_mia.jpg
+│   │   ├── 037_anjana.jpg
+│   │   ├── 039_kyle.jpg
+│   │   ├── 040_chang.jpg
+│   │   ├── 041_paul.jpg
+│   │   ├── 042_youhana.jpg
+│   │   ├── 043_michael.jpg
+│   │   ├── 044_connor.jpg
+│   │   ├── 045_justin.jpg
+│   │   ├── 046_coleman.jpg
+│   │   ├── 047_john.jpg
+│   │   ├── 048_zoe.jpg
+│   │   ├── 049_cameron.jpg
+│   │   ├── 050_michael.jpg
+│   │   ├── 050_shuxian.jpg
+│   │   ├── 052_kevin.jpg
+│   │   ├── 053_karen.jpg
+│   │   ├── 054_shomik.jpg
+│   │   ├── 055_ben.jpg
+│   │   ├── 056_yogesh.jpg
+│   │   ├── 058_yusuf.jpg
+│   │   ├── 060_marcus.jpg
+│   │   ├── 061_gabriel.jpg
+│   │   ├── 062_lawrie.jpg
+│   │   ├── 064_eric.jpg
+│   │   ├── 069_tw.jpg
+│   │   ├── 070_vidhi.jpg
+│   │   ├── 071_lucy.jpg
+│   │   ├── apollo.jpg
+│   │   ├── ben.jpg
+│   │   ├── colin-percival.jpg
+│   │   ├── dan_gottlieb.jpg
+│   │   ├── dave.jpg
+│   │   ├── hao.jpg
+│   │   ├── jeremy.jpg
+│   │   ├── max.jpg
+│   │   ├── mike.jpg
+│   │   ├── nerd.svg
+│   │   ├── nick.jpg
+│   │   ├── partners
+│   │   │   ├── ethereum_danny.jpg
+│   │   │   ├── formance_clement.jpg
+│   │   │   ├── mongodb_jesse.jpg
+│   │   │   ├── mysten_mark_logan.jpg
+│   │   │   ├── mysten_sam.jpg
+│   │   │   ├── orbitinghail_carl.jpg
+│   │   │   ├── ramp_nikolay.jpg
+│   │   │   ├── synadia_marco.jpg
+│   │   │   ├── tursodb_glauber.jpg
+│   │   │   └── warpstream_richard.jpg
+│   │   ├── patrick_mcbride.jpg
+│   │   ├── randall.jpg
+│   │   ├── secret_man.jpg
+│   │   └── will.jpg
+│   ├── snouty.png
+│   ├── stickerBanner
+│   │   ├── laptop-stickers.png
+│   │   ├── snouty-stickers.png
+│   │   ├── stickers-mobile.png
+│   │   ├── stickers-paper.png
+│   │   └── stickers.png
+│   ├── stickers
+│   │   └── 10-looking4bugs.json
+│   ├── texture.png
+│   └── webclip.png
+├── _includes
+│   ├── authenticate_container.md
+│   ├── background-fintech.html
+│   ├── basic_k8s_test_example.md
+│   ├── basic_test_example.md
+│   ├── bugbash2026_layout.html
+│   ├── chat_platforms_example.md
+│   ├── container_driven_instrumentation.md
+│   ├── details_substitution.njk
+│   ├── ephemeral_test_webhook.md
+│   ├── idebug_webhook.md
+│   ├── layout-blog-post.html
+│   ├── layout-blog-post-wide.html
+│   ├── layout-doc.html
+│   ├── layout-fit.html
+│   ├── layout-h-centered-fit.html
+│   ├── layout-h-centered.html
+│   ├── layout-h-centered-medium.html
+│   ├── layout_home.html
+│   ├── layout.html
+│   ├── layout-toc.html
+│   ├── logging_limit.md
+│   ├── multiple_setup_complete_warning.md
+│   ├── profiler_example.md
+│   ├── promo
+│   │   └── what_is_antithesis_promo.md
+│   ├── ready_signal_intro.md
+│   ├── redirecting.html
+│   ├── section-casestudy-quotes.html
+│   ├── section-case-study-stats.html
+│   ├── section-contact-us.html
+│   ├── section-feature-antithesis.html
+│   ├── section-logo-marquee.html
+│   ├── section-quote-edge-to-edge.html
+│   ├── section-what-antithesis.html
+│   ├── section-why-antithesis.html
+│   ├── section-wistia-video.html
+│   ├── skeleton.html
+│   ├── webhook_auth.md
+│   ├── webhook_example.md
+│   └── wistia-player.html
+├── index.html
+├── industries
+│   ├── blockchain
+│   │   ├── images
+│   │   │   ├── avoid_failures.svg
+│   │   │   ├── blocks_placeholder.png
+│   │   │   ├── cover_blockchain.jpg
+│   │   │   ├── features
+│   │   │   │   ├── bug-likelihood.png
+│   │   │   │   ├── debugging.png
+│   │   │   │   ├── properties.png
+│   │   │   │   └── test-run.png
+│   │   │   ├── launch_faster.svg
+│   │   │   └── testing_toll.svg
+│   │   ├── index.html
+│   │   └── spline-scenes
+│   │       └── scene-blockchain.splinecode
+│   ├── cloud_infrastructure
+│   │   ├── images
+│   │   │   ├── cloud_infra_cta.jpg
+│   │   │   ├── cloud_infra_thumbnail.png
+│   │   │   ├── cover_cloud_infra.jpg
+│   │   │   ├── database.svg
+│   │   │   ├── features
+│   │   │   │   ├── bug-likelihood.png
+│   │   │   │   ├── debugging.png
+│   │   │   │   ├── properties.png
+│   │   │   │   └── test-run.png
+│   │   │   ├── file-text.svg
+│   │   │   └── rocket-launch.svg
+│   │   └── index.html
+│   ├── databases
+│   │   ├── images
+│   │   │   ├── cover_database.jpg
+│   │   │   ├── database-icons
+│   │   │   │   ├── i1.svg
+│   │   │   │   ├── i2.svg
+│   │   │   │   ├── i3.svg
+│   │   │   │   ├── i4.svg
+│   │   │   │   ├── i5.svg
+│   │   │   │   └── i6.svg
+│   │   │   ├── database.svg
+│   │   │   ├── features
+│   │   │   │   ├── bug-likelihood.png
+│   │   │   │   ├── debugging.png
+│   │   │   │   ├── properties.png
+│   │   │   │   └── test-run.png
+│   │   │   ├── file-text.svg
+│   │   │   └── rocket-launch.svg
+│   │   └── index.html
+│   └── fintech
+│       ├── cover_fintech.jpg
+│       ├── index.html
+│       ├── launch_faster.svg
+│       ├── testing_toll.svg
+│       └── war_rooms.svg
+├── legal
+│   ├── antithesis_paid_poc_terms.pdf
+│   ├── legal.json
+│   ├── poc_terms_050824_archived.pdf
+│   ├── privacy_policy.md
+│   ├── privacy_policy.pdf
+│   ├── saas_terms_2025_02_10.md
+│   ├── saas_terms_2025_02_10.pdf
+│   ├── saas_terms_2025_05_16.md
+│   ├── saas_terms_2025_05_16.pdf
+│   ├── saas_terms_2025_06_26.md
+│   ├── saas_terms_2025_06_26.pdf
+│   ├── saas_terms_2025_08_13.md
+│   ├── saas_terms_2025_08_13.pdf
+│   ├── saas_terms_2025_08_27.md
+│   ├── saas_terms_2025_08_27.pdf
+│   ├── saas_terms_2025_12_17.md
+│   ├── saas_terms_2025_12_17.pdf
+│   ├── terms_of_use.md
+│   └── terms_of_use.pdf
+├── login
+│   ├── index.html
+│   └── snouty-electro.png
+├── lp
+│   ├── ga
+│   │   └── 01.html
+│   └── ln
+│       └── 01.html
+├── package.json
+├── package-lock.json
+├── product
+│   ├── demo.html
+│   ├── how_antithesis_works.html
+│   ├── how_does_antithesis_work.md
+│   ├── how_is_antithesis_different.md
+│   ├── product.json
+│   └── what_is_antithesis.html
+├── promo
+│   ├── bugbash.html
+│   └── ddia.html
+├── reports
+│   ├── example-bug-report.md
+│   └── example-triage-report.md
+├── resources
+│   ├── autonomous_testing.md
+│   ├── blockchain_properties_images
+│   │   └── blockchain_layers.png
+│   ├── blockchain_property_catalog.md
+│   ├── cost_of_outages.md
+│   ├── deterministic_simulation_testing.md
+│   ├── index.md
+│   ├── property_based_testing.md
+│   ├── reliability_glossary.md
+│   ├── ring_test_images
+│   │   ├── ring_test_bug.png
+│   │   └── ring_test_overview.png
+│   ├── ring_test.md
+│   └── testing_techniques.md
+├── robots.txt
+├── _scripts
+│   ├── context_menu
+│   │   └── index.tsx
+│   ├── css_modules.d.ts
+│   ├── izoom
+│   │   ├── index.tsx
+│   │   ├── izoom.module.css
+│   │   └── typings.d.ts
+│   ├── libs
+│   │   ├── gsap-premium
+│   │   │   └── esm
+│   │   │       ├── all.js
+│   │   │       ├── CSSPlugin.js
+│   │   │       ├── CSSRulePlugin.js
+│   │   │       ├── CustomBounce.js
+│   │   │       ├── CustomEase.js
+│   │   │       ├── CustomWiggle.js
+│   │   │       ├── Draggable.js
+│   │   │       ├── DrawSVGPlugin.js
+│   │   │       ├── EaselPlugin.js
+│   │   │       ├── EasePack.js
+│   │   │       ├── Flip.js
+│   │   │       ├── gsap-core.js
+│   │   │       ├── GSDevTools.js
+│   │   │       ├── index.js
+│   │   │       ├── InertiaPlugin.js
+│   │   │       ├── MorphSVGPlugin.js
+│   │   │       ├── MotionPathHelper.js
+│   │   │       ├── MotionPathPlugin.js
+│   │   │       ├── Observer.js
+│   │   │       ├── Physics2DPlugin.js
+│   │   │       ├── PhysicsPropsPlugin.js
+│   │   │       ├── PixiPlugin.js
+│   │   │       ├── ScrambleTextPlugin.js
+│   │   │       ├── ScrollSmoother.js
+│   │   │       ├── ScrollToPlugin.js
+│   │   │       ├── ScrollTrigger.js
+│   │   │       ├── SplitText.js
+│   │   │       ├── TextPlugin.js
+│   │   │       └── utils
+│   │   │           ├── matrix.js
+│   │   │           ├── PathEditor.js
+│   │   │           ├── paths.js
+│   │   │           ├── strings.js
+│   │   │           └── VelocityTracker.js
+│   │   ├── isInViewport.ts
+│   │   ├── markdownItDtAnchor.mjs
+│   │   └── youtube-lite
+│   │       ├── lite-yt-embed.css
+│   │       └── lite-yt-embed.js
+│   ├── search
+│   │   ├── eleventy-search-plugin
+│   │   │   ├── getSite.mjs
+│   │   │   ├── index.mjs
+│   │   │   └── search_doc_config.mjs
+│   │   ├── index.tsx
+│   │   └── search.module.css
+│   ├── spline
+│   │   └── runtime.js
+│   ├── stories-react
+│   │   ├── Components
+│   │   │   ├── Actions
+│   │   │   │   ├── Actions.component.tsx
+│   │   │   │   ├── Actions.constants.ts
+│   │   │   │   ├── Actions.module.css
+│   │   │   │   └── index.ts
+│   │   │   ├── CustomComponent
+│   │   │   │   ├── CustomComponents.component.tsx
+│   │   │   │   ├── CustomComponents.module.css
+│   │   │   │   └── index.ts
+│   │   │   ├── Image
+│   │   │   │   ├── Image.component.tsx
+│   │   │   │   ├── Image.module.css
+│   │   │   │   └── index.ts
+│   │   │   ├── index.ts
+│   │   │   ├── Progress
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── Progress.component.tsx
+│   │   │   │   └── progress.module.css
+│   │   │   ├── ProgressBar
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── ProgressBar.component.tsx
+│   │   │   │   └── ProgressBar.module.css
+│   │   │   ├── SeeMore
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── SeeMore.component.tsx
+│   │   │   │   └── SeeMore.module.css
+│   │   │   ├── SeeMoreComponent
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── SeeMoreComponent.component.tsx
+│   │   │   │   └── SeeMoreComponent.module.css
+│   │   │   ├── SoundIcon
+│   │   │   │   ├── index.ts
+│   │   │   │   └── SoundIcon.component.tsx
+│   │   │   ├── Story
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── Story.component.tsx
+│   │   │   │   ├── Story.constants.ts
+│   │   │   │   └── Story.module.css
+│   │   │   └── Video
+│   │   │       ├── index.ts
+│   │   │       ├── Video.component.tsx
+│   │   │       └── Video.module.css
+│   │   ├── Contexts
+│   │   │   └── index.ts
+│   │   ├── declerations.d.ts
+│   │   ├── Hooks
+│   │   │   └── index.ts
+│   │   ├── index.tsx
+│   │   ├── styles.module.css
+│   │   ├── types.d.ts
+│   │   └── utilities.ts
+│   ├── test
+│   │   ├── global-setup.ts
+│   │   ├── links.spec.ts
+│   │   ├── playwright.config.ts
+│   │   └── tsconfig.json
+│   └── what_why_how_slides
+│       ├── bracket.tsx
+│       ├── index.tsx
+│       ├── paths.tsx
+│       ├── persona.tsx
+│       └── slides.module.css
+├── security
+│   ├── images
+│   │   ├── security-architecture-01.png
+│   │   ├── security-architecture-02.png
+│   │   ├── security-architecture-03.png
+│   │   ├── security-architecture-04.png
+│   │   └── security-architecture-05.png
+│   ├── manifesto.md
+│   ├── policy.md
+│   └── security.json
+├── sitemap.liquid
+├── site.webmanifest
+├── solutions
+│   ├── case_studies.html
+│   ├── problems_we_solve.html
+│   ├── solutions.json
+│   └── working_with_antithesis.md
+├── style-guides
+│   ├── aside.md
+│   ├── codeblocks.md
+│   ├── definition-lists.md
+│   ├── index.md
+│   └── styles.md
+├── thank_you.html
+├── typings.d.ts
+└── website_tree.txt
+
+243 directories, 907 files

@@ -15,13 +15,19 @@ This is the home page.
 
 {{ snippet | fake_filter }}
 
+{{ collections.all | list_nav_children("Home") | safe }}
+
 {% include 'shared_content.md' %}
 
-{% highlight js %}const x = 1;{% endhighlight %}
+{% highlight "js" %}const x = 1;{% endhighlight %}
 
 {% pic "/image.png" %}
 
-Below is a fenced code block with Liquid-like syntax that must be preserved:
+{% tabs %}
+tab content
+{% endtabs %}
+
+Below is a fenced code block with template-like syntax that must be preserved:
 
 {% raw %}
 ```yaml
