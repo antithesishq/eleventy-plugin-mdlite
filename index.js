@@ -91,6 +91,12 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
       const data = pageDataByInputPath.get(result.inputPath) || {};
       const raw = await readFile(result.inputPath, "utf8");
       const content = stripFrontmatter(raw);
+
+      // Skip pages that are empty after stripping frontmatter
+      if (!content.trim()) {
+        continue;
+      }
+
       const tags = Array.isArray(data.tags) ? JSON.stringify(data.tags) : null;
 
       // Copy markdown to output: /docs/foo/ → _site/docs/foo.md

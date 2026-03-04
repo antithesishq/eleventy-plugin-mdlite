@@ -40,6 +40,10 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(!content.includes("---"));
       assert.ok(!content.includes("title: Foo"));
     });
+
+    it("does not emit empty pages as markdown files", async () => {
+      await assert.rejects(access(join(outputDir, "docs/empty.md")));
+    });
   });
 
   describe("sqlite database", () => {
@@ -88,6 +92,13 @@ describe("eleventy-plugin-mdlite", () => {
     it("stores null tags when page has no tags", () => {
       const row = db.prepare("SELECT tags FROM pages WHERE path = ?").get("/");
       assert.equal(row.tags, null);
+    });
+
+    it("does not insert empty pages into the database", () => {
+      const row = db
+        .prepare("SELECT * FROM pages WHERE path = ?")
+        .get("/docs/empty/");
+      assert.equal(row, undefined);
     });
 
     it("supports full-text search", () => {
