@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Strip markdown formatting from FTS index for better search quality
+- Skip empty pages when building the search index
+
 ## 0.2.0 2026-03-03
 
 - Add GitHub Actions CI
