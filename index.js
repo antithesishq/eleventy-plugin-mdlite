@@ -1,6 +1,8 @@
 import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import Database from "better-sqlite3";
+import { remark } from "remark";
+import stripMarkdown from "strip-markdown";
 
 function createSchema(db) {
   db.exec(`
@@ -13,23 +15,22 @@ function createSchema(db) {
   `);
 
   // https://sqlite.org/fts5.html
+  // Standalone FTS table so we can index markdown-stripped plain text while
+  // keeping raw markdown in pages.
   db.exec(`
     CREATE VIRTUAL TABLE pages_fts USING fts5(
       title,
       content,
-      content='pages',
-      content_rowid='rowid',
-      tokenize='porter unicode61',
-      prefix='2 3'
+      tokenize='porter unicode61'
     )
   `);
+}
 
-  db.exec(`
-    CREATE TRIGGER pages_ai AFTER INSERT ON pages BEGIN
-      INSERT INTO pages_fts(rowid, title, content)
-      VALUES (new.rowid, new.title, new.content);
-    END
-  `);
+const markdownStripper = remark().use(stripMarkdown);
+
+async function stripMarkdownFormatting(md) {
+  const file = await markdownStripper.process(md);
+  return String(file);
 }
 
 function stripFrontmatter(raw) {
@@ -83,8 +84,11 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
     const db = new Database(dbPath);
     createSchema(db);
 
-    const insert = db.prepare(
+    const insertPage = db.prepare(
       "INSERT INTO pages (path, title, tags, content) VALUES (?, ?, ?, ?)",
+    );
+    const insertFts = db.prepare(
+      "INSERT INTO pages_fts(rowid, title, content) VALUES (?, ?, ?)",
     );
 
     for (const result of mdResults) {
@@ -111,7 +115,17 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
       const output = header ? header + "\n" + content : content;
       await writeFile(mdOutputPath, output);
 
-      insert.run(result.url, data.title ?? null, tags, content);
+      // Insert page with raw markdown content
+      const info = insertPage.run(
+        result.url,
+        data.title ?? null,
+        tags,
+        content,
+      );
+
+      // Index stripped plain text into FTS for better search quality
+      const plaintext = await stripMarkdownFormatting(content);
+      insertFts.run(info.lastInsertRowid, data.title ?? null, plaintext);
     }
 
     db.exec("VACUUM");

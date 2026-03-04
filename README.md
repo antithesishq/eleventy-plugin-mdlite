@@ -72,15 +72,6 @@ WHERE pages_fts MATCH 'deploy'
 ORDER BY f.rank;
 ```
 
-**Prefix search** — match words starting with a prefix (enabled for 2- and 3-character prefixes):
-
-```sql
-SELECT p.path, p.title
-FROM pages_fts f
-JOIN pages p ON p.rowid = f.rowid
-WHERE pages_fts MATCH 'conf*';
-```
-
 **Phrase search** — match an exact phrase:
 
 ```sql
