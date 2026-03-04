@@ -66,7 +66,7 @@ describe("eleventy-plugin-mdlite", () => {
     it("expands nested data paths", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        content.includes("Email support@example.com"),
+        content.includes("[Contact us](/contact/)"),
         "output should contain expanded docsub.contact_us value",
       );
       assert.ok(
@@ -89,6 +89,23 @@ describe("eleventy-plugin-mdlite", () => {
         content.includes("Expanded snippet value"),
         "unknown filter should still resolve the variable",
       );
+      // Verify filters with parenthesized Nunjucks args execute correctly
+      assert.ok(
+        content.includes("<ul><li>Home</li></ul>"),
+        "list_nav_children filter should produce its real output",
+      );
+    });
+
+    it("expands collections.all piped through a filter", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes("6"),
+        "collections.all | foo should resolve to the collection length",
+      );
+      assert.ok(
+        !content.includes("collections.all"),
+        "output should not contain raw collections.all reference",
+      );
     });
 
     it("expands includes", async () => {
@@ -106,16 +123,16 @@ describe("eleventy-plugin-mdlite", () => {
     it("preserves paired shortcode tags and body content", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        content.includes("{% highlight js %}const x = 1;{% endhighlight %}"),
+        content.includes('{% highlight "js" %}const x = 1;{% endhighlight %}'),
         "paired shortcode tags and body content should be preserved",
       );
     });
 
-    it("preserves unpaired shortcode tags", async () => {
+    it("executes unpaired shortcodes", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        content.includes('{% pic "/image.png" %}'),
-        "unpaired shortcode tag should be preserved",
+        content.includes('<img src="/image.png">'),
+        "unpaired shortcode should produce its real output",
       );
     });
 
@@ -194,7 +211,7 @@ describe("eleventy-plugin-mdlite", () => {
 
     it("has pages table with correct schema", () => {
       const cols = db.pragma("table_info(pages)").map((c) => c.name);
-      assert.deepEqual(cols, ["path", "title", "tags", "content"]);
+      assert.deepEqual(cols, ["path", "title", "content"]);
     });
 
     it("contains expected page rows", () => {
@@ -235,21 +252,9 @@ describe("eleventy-plugin-mdlite", () => {
         "database content should contain expanded include",
       );
       assert.ok(
-        row.content.includes("Email support@example.com"),
+        row.content.includes("[Contact us](/contact/)"),
         "database content should contain expanded nested data path",
       );
-    });
-
-    it("stores tags as JSON array", () => {
-      const row = db
-        .prepare("SELECT tags FROM pages WHERE path = ?")
-        .get("/docs/foo/");
-      assert.deepEqual(JSON.parse(row.tags), ["docs"]);
-    });
-
-    it("stores null tags when page has no tags", () => {
-      const row = db.prepare("SELECT tags FROM pages WHERE path = ?").get("/");
-      assert.equal(row.tags, null);
     });
 
     it("does not insert empty pages into the database", () => {
@@ -352,6 +357,7 @@ describe("eleventy-plugin-mdlite with header", () => {
     }
   });
 });
+
 
 describe("eleventy-plugin-mdlite with pathPrefix", () => {
   const prefixedOutputDir = join(fixturesDir, "_site_prefixed");

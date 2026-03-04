@@ -47,11 +47,11 @@ eleventyConfig.addPlugin(mdlitePlugin, {
 
 The generated database contains a `pages` table and a `pages_fts` FTS5 virtual table for full-text search:
 
-| Column    | Type               | Description                  |
-| --------- | ------------------ | ---------------------------- |
-| `path`    | `TEXT PRIMARY KEY` | Page URL (e.g. `/docs/foo/`) |
-| `title`   | `TEXT`             | Title from frontmatter       |
-| `tags`    | `TEXT`             | JSON array of tags, or null  |
+| Column    | Type               | Description                            |
+| --------- | ------------------ | -------------------------------------- |
+| `path`    | `TEXT PRIMARY KEY` | Page URL (e.g. `/docs/foo/`)           |
+| `title`   | `TEXT`             | Title from frontmatter                 |
+| `tags`    | `TEXT`             | JSON array of tags, or null            |
 | `content` | `TEXT NOT NULL`    | Markdown source (frontmatter stripped) |
 
 ## Example Queries
@@ -120,7 +120,7 @@ WHERE pages_fts MATCH 'install';
 
 ## Limitations
 
-This plugin has only been tested with Liquid, Eleventy's default template language. Other template engines (Nunjucks, Handlebars, etc.) may not work correctly.
+This plugin has only been tested with Nunjucks, Eleventy's default template language. Other template engines (Liquid, Handlebars, etc.) may not work correctly.
 
 ## Requirements
 

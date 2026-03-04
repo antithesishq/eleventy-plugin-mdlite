@@ -9,6 +9,7 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addShortcode("pic", (src) => `<img src="${src}">`);
   eleventyConfig.addFilter("fake_filter", (value) => value);
+  eleventyConfig.addFilter("foo", (collection) => collection.length);
   eleventyConfig.addFilter("list_nav_children", (collection, parentKey) => {
     return `<ul><li>${parentKey}</li></ul>`;
   });

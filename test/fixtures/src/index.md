@@ -15,7 +15,9 @@ This is the home page.
 
 {{ snippet | fake_filter }}
 
-{{ collections.all | list_nav_children("Home") | safe }}
+{{ docsub.contact_us | list_nav_children("Home") | safe }}
+
+{{ collections.all | foo }}
 
 {% include 'shared_content.md' %}
 

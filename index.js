@@ -1,14 +1,13 @@
 import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import Database from "better-sqlite3";
-import { Liquid, Tag } from "liquidjs";
+import nunjucks from "nunjucks";
 
 function createSchema(db) {
   db.exec(`
     CREATE TABLE pages (
       path TEXT PRIMARY KEY,
       title TEXT,
-      tags TEXT,
       content TEXT NOT NULL
     )
   `);
@@ -34,13 +33,6 @@ function createSchema(db) {
   `);
 }
 
-class PassthroughTag extends Tag {
-  parse() {}
-  *render(context, emitter) {
-    emitter.write(this.token.getText());
-  }
-}
-
 function stripFrontmatter(raw) {
   if (!raw.startsWith("---")) {
     return raw;
@@ -55,7 +47,12 @@ function stripFrontmatter(raw) {
 }
 
 export default function mdlitePlugin(eleventyConfig, options = {}) {
-  const { dbFilename = "sqlite.db", pathPrefix = "/", header = "" } = options;
+  const {
+    dbFilename = "sqlite.db",
+    pathPrefix = "/",
+    header = "",
+  } = options;
+
   // Normalize to "/prefix/" form so startsWith() works on URLs.
   // "docs", "/docs", "/docs/" all become "/docs/"; "/" stays as "/".
   const normalizedPrefix =
@@ -70,28 +67,71 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
   });
 
   eleventyConfig.on("eleventy.after", async ({ directories, results }) => {
-    const includesDir = directories.includes || join(directories.input, "_includes");
-    const liquid = new Liquid({
-      root: [includesDir],
-      strictFilters: false,
-      strictVariables: false,
-    });
-
-    liquid.tags = new Proxy(liquid.tags, {
-      get(target, prop) {
-        const val = target[prop];
-        if (val !== undefined) {
-          return val;
-        }
-        return PassthroughTag;
-      },
+    const includesDir =
+      directories.includes || join(directories.input, "_includes");
+    const loader = new nunjucks.FileSystemLoader(includesDir);
+    const env = new nunjucks.Environment(loader, {
+      throwOnUndefined: false,
+      autoescape: false,
     });
 
     for (const name of Object.keys(eleventyConfig.getPairedShortcodes())) {
-      liquid.registerTag(name, PassthroughTag);
+      env.addExtension(name, {
+        tags: [name],
+        parse(parser, nodes) {
+          const tok = parser.nextToken();
+          const src = parser.tokens.str;
+          const tagStart = src.lastIndexOf("{%", parser.tokens.index);
+          const args = parser.parseSignature(null, true);
+          parser.advanceAfterBlockEnd(tok.value);
+          parser.parseUntilBlocks("end" + name);
+          parser.advanceAfterBlockEnd();
+          const rawText = src.slice(tagStart, parser.tokens.index);
+          const rawNode = new nodes.Literal(tok.lineno, tok.colno, rawText);
+          return new nodes.CallExtension(
+            this,
+            "run",
+            new nodes.NodeList(tok.lineno, tok.colno, [rawNode]),
+          );
+        },
+        run(context, rawText) {
+          return new nunjucks.runtime.SafeString(rawText);
+        },
+      });
     }
-    for (const name of Object.keys(eleventyConfig.getShortcodes())) {
-      liquid.registerTag(name, PassthroughTag);
+
+    const shortcodes = eleventyConfig.getShortcodes();
+    for (const [name, fn] of Object.entries(shortcodes)) {
+      env.addExtension(name, {
+        tags: [name],
+        parse(parser, nodes) {
+          const tok = parser.nextToken();
+          const args = parser.parseSignature(null, true);
+          parser.advanceAfterBlockEnd(tok.value);
+          return new nodes.CallExtensionAsync(this, "run", args);
+        },
+        run(context, ...args) {
+          const cb = args.pop();
+          try {
+            const result = fn(...args);
+            if (result && typeof result.then === "function") {
+              result.then(
+                (val) => cb(null, new nunjucks.runtime.SafeString(val)),
+                (err) => cb(err),
+              );
+            } else {
+              cb(null, new nunjucks.runtime.SafeString(result));
+            }
+          } catch (err) {
+            cb(err);
+          }
+        },
+      });
+    }
+
+    const filters = eleventyConfig.getFilters();
+    for (const [name, fn] of Object.entries(filters)) {
+      env.addFilter(name, fn);
     }
 
     const outputDir = directories.output;
@@ -117,7 +157,7 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
     createSchema(db);
 
     const insertPage = db.prepare(
-      "INSERT INTO pages (path, title, tags, content) VALUES (?, ?, ?, ?)",
+      "INSERT INTO pages (path, title, content) VALUES (?, ?, ?)",
     );
 
     for (const result of mdResults) {
@@ -126,9 +166,19 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
       const stripped = stripFrontmatter(raw);
       let content;
       try {
-        content = await liquid.parseAndRender(stripped, data);
+        content = await new Promise((resolve, reject) => {
+          env.renderString(stripped, data, (err, result) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(result);
+            }
+          });
+        });
       } catch (err) {
-        console.error(`[mdlite] Liquid render failed for ${result.inputPath}: ${err.message}`);
+        console.error(
+          `[mdlite] render failed for ${result.inputPath}: ${err.message}`,
+        );
         content = stripped;
       }
 
@@ -138,8 +188,6 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
       }
 
       content = content.replace(/^\n/, "");
-
-      const tags = Array.isArray(data.tags) ? JSON.stringify(data.tags) : null;
 
       // Copy markdown to output: /docs/foo/ → _site/docs/foo.md
       let mdOutputPath;
@@ -153,12 +201,7 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
       const output = header ? header + "\n\n" + content : content;
       await writeFile(mdOutputPath, output);
 
-      insertPage.run(
-        result.url,
-        data.title ?? null,
-        tags,
-        content,
-      );
+      insertPage.run(result.url, data.title ?? null, content);
     }
 
     db.exec("INSERT INTO pages_fts(pages_fts) VALUES('optimize')");

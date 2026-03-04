@@ -2,11 +2,15 @@
 
 ## Unreleased
 
-- Process Liquid tags and includes in markdown output using page data
+- Switch template processing from Liquid to Nunjucks
+- Expand Nunjucks variables, filters, and includes in markdown output
+- Execute unpaired shortcodes and pass through paired shortcodes
 - Skip empty pages when building the search index
 - Configure BM25 ranking weights for full-text search
 - Optimize FTS index before closing the database
 - Remove full-text search prefix matching
+- Remove `tags` column from pages table
+- Add `spec.md`
 - Add snapshot tests
 
 ## 0.2.0 2026-03-03
