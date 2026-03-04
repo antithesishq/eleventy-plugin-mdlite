@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-- Use content table with trigger for FTS index instead of standalone table
+- Process Liquid tags in markdown output using page data
+- Convert paired shortcodes to markdown code blocks (inline or fenced)
+- Strip unpaired shortcodes from markdown output
+- Configure BM25 ranking weights for full-text search
+- Optimize FTS index before closing the database
 - Skip empty pages when building the search index
 - Remove full text search prefixing
 

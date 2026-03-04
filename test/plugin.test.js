@@ -50,6 +50,46 @@ describe("eleventy-plugin-mdlite", () => {
     it("does not emit empty pages as markdown files", async () => {
       await assert.rejects(access(join(outputDir, "docs/empty.md")));
     });
+
+    it("expands Liquid output tags using page data", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes("Expanded snippet value"),
+        "output should contain the expanded snippet value",
+      );
+      assert.ok(
+        !content.includes("{{ snippet }}"),
+        "output should not contain raw Liquid tag",
+      );
+    });
+
+    it("converts inline paired shortcodes to inline code", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes("`const x = 1;`"),
+        "single-line paired shortcode should be wrapped in inline backticks",
+      );
+      assert.ok(
+        !content.includes("{%"),
+        "output should not contain {% block tags",
+      );
+    });
+
+    it("converts multiline paired shortcodes to fenced code blocks", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes('```\ndef hello():\n    print("world")\n```'),
+        "multiline paired shortcode should be wrapped in a fenced code block",
+      );
+    });
+
+    it("passes through unknown filters without error", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes("Expanded snippet value"),
+        "unknown filter should still resolve the variable",
+      );
+    });
   });
 
   describe("sqlite database", () => {
@@ -86,6 +126,20 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(row.content.includes("# Welcome"));
       assert.ok(!row.content.includes("---"));
       assert.ok(!row.content.includes("title: Home"));
+    });
+
+    it("stores expanded Liquid content in the database", () => {
+      const row = db
+        .prepare("SELECT content FROM pages WHERE path = ?")
+        .get("/");
+      assert.ok(
+        row.content.includes("Expanded snippet value"),
+        "database content should contain expanded snippet value",
+      );
+      assert.ok(
+        !row.content.includes("{{ snippet }}"),
+        "database content should not contain raw Liquid tags",
+      );
     });
 
     it("stores tags as JSON array", () => {

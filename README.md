@@ -118,6 +118,10 @@ WHERE pages_fts MATCH 'install';
 
 > The FTS5 index uses the `porter` tokenizer (stemming) and `unicode61`, so a search for `"installs"` will also match `"install"`, `"installed"`, etc.
 
+## Limitations
+
+This plugin has only been tested with Liquid, Eleventy's default template language. Other template engines (Nunjucks, Handlebars, etc.) may not work correctly.
+
 ## Requirements
 
 - Eleventy 3.x (`@11ty/eleventy ^3.0.0`)
