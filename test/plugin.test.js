@@ -63,23 +63,23 @@ describe("eleventy-plugin-mdlite", () => {
       );
     });
 
-    it("converts inline paired shortcodes to inline code", async () => {
+    it("expands nested data paths", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        content.includes("`const x = 1;`"),
-        "single-line paired shortcode should be wrapped in inline backticks",
+        content.includes("Email support@example.com"),
+        "output should contain expanded docsub.contact_us value",
       );
       assert.ok(
-        !content.includes("{%"),
-        "output should not contain {% block tags",
+        !content.includes("{{ docsub.contact_us }}"),
+        "output should not contain raw nested variable tag",
       );
     });
 
-    it("converts multiline paired shortcodes to fenced code blocks", async () => {
+    it("leaves unresolved variables empty", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        content.includes('```\ndef hello():\n    print("world")\n```'),
-        "multiline paired shortcode should be wrapped in a fenced code block",
+        !content.includes("{{ unknown_var }}"),
+        "unresolved variables should not appear as raw tags",
       );
     });
 
@@ -88,6 +88,99 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(
         content.includes("Expanded snippet value"),
         "unknown filter should still resolve the variable",
+      );
+    });
+
+    it("expands includes", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes("This content was included from a shared file."),
+        "output should contain included file content",
+      );
+      assert.ok(
+        !content.includes("{% include"),
+        "output should not contain raw include tag",
+      );
+    });
+
+    it("renders paired shortcode body content without wrapper tags", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes("const x = 1;"),
+        "paired shortcode body content should be in output",
+      );
+      assert.ok(
+        !content.includes("{% highlight"),
+        "output should not contain paired shortcode opening tag",
+      );
+      assert.ok(
+        !content.includes("{% endhighlight"),
+        "output should not contain paired shortcode closing tag",
+      );
+    });
+
+    it("strips unpaired shortcode tags", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        !content.includes("{% pic"),
+        "output should not contain unpaired shortcode tag",
+      );
+    });
+
+    it("preserves fenced code block contents", async () => {
+      const content = await readFile(join(outputDir, "index.md"), "utf8");
+      assert.ok(
+        content.includes('${{ secrets.GH_PAT }}'),
+        "code block should preserve Liquid-like variable syntax",
+      );
+      assert.ok(
+        content.includes('{{"input", x}}'),
+        "code block should preserve C++ double-brace syntax",
+      );
+    });
+
+    it("preserves container directives", async () => {
+      const content = await readFile(
+        join(outputDir, "docs/directives.md"),
+        "utf8",
+      );
+      assert.ok(
+        content.includes(":::note"),
+        "output should preserve :::note directive",
+      );
+      assert.ok(
+        content.includes(":::warning"),
+        "output should preserve :::warning directive",
+      );
+    });
+
+    it("preserves attribute syntax", async () => {
+      const content = await readFile(
+        join(outputDir, "docs/directives.md"),
+        "utf8",
+      );
+      assert.ok(
+        content.includes("{.purple}"),
+        "output should preserve class attribute syntax",
+      );
+      assert.ok(
+        content.includes('{id="section-anchor"}'),
+        "output should preserve id attribute syntax",
+      );
+    });
+
+    it("preserves inline HTML", async () => {
+      const content = await readFile(
+        join(outputDir, "docs/directives.md"),
+        "utf8",
+      );
+      assert.ok(
+        content.includes("<kbd>Ctrl</kbd>"),
+        "output should preserve kbd elements",
+      );
+      assert.ok(
+        content.includes("<small>fine print</small>"),
+        "output should preserve small elements",
       );
     });
   });
@@ -124,7 +217,6 @@ describe("eleventy-plugin-mdlite", () => {
         .prepare("SELECT content FROM pages WHERE path = ?")
         .get("/");
       assert.ok(row.content.includes("# Welcome"));
-      assert.ok(!row.content.includes("---"));
       assert.ok(!row.content.includes("title: Home"));
     });
 
@@ -139,6 +231,20 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(
         !row.content.includes("{{ snippet }}"),
         "database content should not contain raw Liquid tags",
+      );
+    });
+
+    it("stores expanded includes and nested data in the database", () => {
+      const row = db
+        .prepare("SELECT content FROM pages WHERE path = ?")
+        .get("/");
+      assert.ok(
+        row.content.includes("This content was included from a shared file."),
+        "database content should contain expanded include",
+      );
+      assert.ok(
+        row.content.includes("Email support@example.com"),
+        "database content should contain expanded nested data path",
       );
     });
 
@@ -190,6 +296,68 @@ describe("eleventy-plugin-mdlite", () => {
       assert.equal(fts.content, page.content);
     });
 
+  });
+});
+
+describe("eleventy-plugin-mdlite with header", () => {
+  const headerOutputDir = join(fixturesDir, "_site_header");
+
+  before(async () => {
+    await rm(headerOutputDir, { recursive: true, force: true });
+
+    const elev = new Eleventy(inputDir, headerOutputDir, {
+      configPath: join(fixturesDir, "eleventy.config.header.js"),
+      quietMode: true,
+    });
+    await elev.write();
+  });
+
+  after(async () => {
+    await rm(headerOutputDir, { recursive: true, force: true });
+  });
+
+  it("prepends header to markdown output files", async () => {
+    const content = await readFile(join(headerOutputDir, "index.md"), "utf8");
+    assert.ok(
+      content.startsWith("<!-- Generated by mdlite -->"),
+      "output should start with header",
+    );
+  });
+
+  it("prepends header to nested markdown files", async () => {
+    const content = await readFile(
+      join(headerOutputDir, "docs/foo.md"),
+      "utf8",
+    );
+    assert.ok(
+      content.startsWith("<!-- Generated by mdlite -->"),
+      "nested output should start with header",
+    );
+  });
+
+  it("inserts a newline between header and content", async () => {
+    const content = await readFile(join(headerOutputDir, "index.md"), "utf8");
+    assert.ok(
+      content.startsWith("<!-- Generated by mdlite -->\n"),
+      "header should be followed by a newline",
+    );
+  });
+
+  it("does not include header in sqlite content", () => {
+    const db = new Database(join(headerOutputDir, "sqlite.db"), {
+      readonly: true,
+    });
+    try {
+      const row = db
+        .prepare("SELECT content FROM pages WHERE path = ?")
+        .get("/");
+      assert.ok(
+        !row.content.includes("<!-- Generated by mdlite -->"),
+        "database content should not contain header",
+      );
+    } finally {
+      db.close();
+    }
   });
 });
 

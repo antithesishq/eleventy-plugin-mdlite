@@ -1,0 +1,30 @@
+{
+  "pages": {
+    "columns": [
+      "path",
+      "title",
+      "tags",
+      "content"
+    ],
+    "rows": [
+      {
+        "path": "/docs/directives/",
+        "title": "Directives",
+        "tags": "[\"docs\"]",
+        "content": "# Directives\n\n:::note\nThis is a note container directive.\n:::\n\n:::warning\nThis is a warning.\n:::\n\n**Bold text**{.purple} and a heading {id=\"section-anchor\"}\n\nPress <kbd>Ctrl</kbd>+<kbd>C</kbd> to copy. Use <small>fine print</small> for details.\n"
+      },
+      {
+        "path": "/docs/draft-post/",
+        "title": "Draft Post",
+        "tags": null,
+        "content": "# Draft\n\nThis is a draft post.\n"
+      },
+      {
+        "path": "/docs/foo/",
+        "title": "Foo",
+        "tags": "[\"docs\"]",
+        "content": "# Foo\n\nThis is the foo page with some **bold** text and *italic* words.\n\n## Installation\n\nYou can install the package using `npm install mdlite` from the terminal.\n\nHere is a fenced code block:\n\n```javascript\nconst plugin = require(\"mdlite\");\nmodule.exports = function(config) {\n  config.addPlugin(plugin);\n};\n```\n\n## Features\n\n- Supports **full-text search** via SQLite\n- Strips _frontmatter_ automatically\n- Handles [links](https://example.com) and ![images](logo.png \"Logo\")\n\n1. First ordered item\n2. Second ordered item\n3. Third ordered item\n\n> This is a blockquote with **nested bold** and a [link](https://example.com).\n\n## Advanced Usage\n\nHere is some ***bold italic*** text and inline `code spans` everywhere.\n\nThe word kaleidoscope appears here as a unique needle for search testing.\n\n---\n\nCheck the [documentation](https://example.com/docs) for more details.\n"
+      }
+    ]
+  }
+}

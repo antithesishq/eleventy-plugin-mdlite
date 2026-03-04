@@ -5,7 +5,7 @@
   "description": "Eleventy plugin that copies raw markdown to output and generates a SQLite index",
   "main": "index.js",
   "scripts": {
-    "test": "node --test test/plugin.test.js"
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.0.0",
