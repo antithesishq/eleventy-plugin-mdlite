@@ -1,8 +1,6 @@
 import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import Database from "better-sqlite3";
-import { remark } from "remark";
-import stripMarkdown from "strip-markdown";
 
 function createSchema(db) {
   db.exec(`
@@ -15,22 +13,23 @@ function createSchema(db) {
   `);
 
   // https://sqlite.org/fts5.html
-  // Standalone FTS table so we can index markdown-stripped plain text while
-  // keeping raw markdown in pages.
+  // External content FTS table backed by the pages table.
   db.exec(`
     CREATE VIRTUAL TABLE pages_fts USING fts5(
       title,
       content,
+      content=pages,
+      content_rowid=rowid,
       tokenize='porter unicode61'
     )
   `);
-}
 
-const markdownStripper = remark().use(stripMarkdown);
-
-async function stripMarkdownFormatting(md) {
-  const file = await markdownStripper.process(md);
-  return String(file);
+  db.exec(`
+    CREATE TRIGGER pages_ai AFTER INSERT ON pages BEGIN
+      INSERT INTO pages_fts(rowid, title, content)
+        VALUES (new.rowid, new.title, new.content);
+    END
+  `);
 }
 
 function stripFrontmatter(raw) {
@@ -87,9 +86,6 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
     const insertPage = db.prepare(
       "INSERT INTO pages (path, title, tags, content) VALUES (?, ?, ?, ?)",
     );
-    const insertFts = db.prepare(
-      "INSERT INTO pages_fts(rowid, title, content) VALUES (?, ?, ?)",
-    );
 
     for (const result of mdResults) {
       const data = pageDataByInputPath.get(result.inputPath) || {};
@@ -115,17 +111,12 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
       const output = header ? header + "\n" + content : content;
       await writeFile(mdOutputPath, output);
 
-      // Insert page with raw markdown content
-      const info = insertPage.run(
+      insertPage.run(
         result.url,
         data.title ?? null,
         tags,
         content,
       );
-
-      // Index stripped plain text into FTS for better search quality
-      const plaintext = await stripMarkdownFormatting(content);
-      insertFts.run(info.lastInsertRowid, data.title ?? null, plaintext);
     }
 
     db.exec("VACUUM");

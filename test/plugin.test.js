@@ -126,67 +126,14 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(rows.some((r) => r.path === "/"));
     });
 
-    it("indexes plain text without markdown formatting in FTS", () => {
-      // The pages table should still have raw markdown
+    it("FTS index reads content from pages table", () => {
       const page = db
         .prepare("SELECT rowid, content FROM pages WHERE path = ?")
         .get("/docs/foo/");
-      assert.ok(page.content.includes("**bold**"));
-
-      // But the FTS index should have stripped plain text
       const fts = db
         .prepare("SELECT content FROM pages_fts WHERE rowid = ?")
         .get(page.rowid);
-
-      // Bold / italic / bold-italic
-      assert.ok(!fts.content.includes("**"), "should not contain bold syntax");
-      assert.ok(!fts.content.includes("*italic*"), "should not contain italic syntax");
-      assert.ok(fts.content.includes("bold"), "should preserve the word bold");
-      assert.ok(fts.content.includes("italic"), "should preserve the word italic");
-
-      // Headings
-      assert.ok(!fts.content.includes("#"), "should not contain heading syntax");
-      assert.ok(fts.content.includes("Foo"), "should preserve heading text");
-      assert.ok(fts.content.includes("Installation"), "should preserve heading text");
-      assert.ok(fts.content.includes("Advanced Usage"), "should preserve heading text");
-
-      // Inline code and fenced code blocks
-      assert.ok(!fts.content.includes("`"), "should not contain backtick syntax");
-      assert.ok(!fts.content.includes("```"), "should not contain fenced code block syntax");
-
-      // Links and images
-      assert.ok(!fts.content.includes("]("), "should not contain link URL syntax");
-      assert.ok(!fts.content.includes("!["), "should not contain image syntax");
-
-      // Blockquote
-      assert.ok(!fts.content.includes("> "), "should not contain blockquote syntax");
-
-      // Plain text content is preserved
-      assert.ok(fts.content.includes("npm install mdlite"), "should preserve inline code text");
-      assert.ok(fts.content.includes("kaleidoscope"), "should preserve unique search needle");
-    });
-
-    it("snippet query returns plain text without formatting", () => {
-      const row = db
-        .prepare(
-          `SELECT snippet(pages_fts, 1, '<b>', '</b>', '...', 20) AS excerpt
-           FROM pages_fts
-           WHERE pages_fts MATCH 'kaleidoscope'`,
-        )
-        .get();
-      assert.ok(row, "snippet query should return a result");
-      assert.ok(
-        row.excerpt.includes("<b>kaleidoscope</b>"),
-        "snippet should highlight the matched term",
-      );
-      assert.ok(
-        !row.excerpt.includes("**"),
-        "snippet should not contain markdown bold syntax",
-      );
-      assert.ok(
-        !row.excerpt.includes("#"),
-        "snippet should not contain heading syntax",
-      );
+      assert.equal(fts.content, page.content);
     });
 
   });

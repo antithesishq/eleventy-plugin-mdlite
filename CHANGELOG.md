@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Strip markdown formatting from FTS index for better search quality
+- Use content table with trigger for FTS index instead of standalone table
 - Skip empty pages when building the search index
 - Remove full text search prefixing
 
