@@ -6,8 +6,9 @@ Eleventy plugin that copies raw markdown files to your output directory and gene
 
 - **Raw markdown output** — copies your `.md` source files alongside the rendered HTML so they're accessible at clean URLs (e.g. `/docs/foo.md`)
 - **Frontmatter stripping** — YAML frontmatter is automatically removed from output files and database content
+- **Template processing** — Nunjucks variables, filters, and includes are expanded in the output; unpaired shortcodes are executed; paired shortcodes are passed through as-is
 - **Custom header injection** — optionally prepend a header (e.g. a comment or license notice) to each output markdown file
-- **SQLite index** — generates a `sqlite.db` with FTS5 full-text search containing every page's URL, title, tags, and content
+- **SQLite index** — generates a `sqlite.db` with FTS5 full-text search containing every page's URL, title, and content
 
 ## Installation
 
@@ -51,7 +52,6 @@ The generated database contains a `pages` table and a `pages_fts` FTS5 virtual t
 | --------- | ------------------ | -------------------------------------- |
 | `path`    | `TEXT PRIMARY KEY` | Page URL (e.g. `/docs/foo/`)           |
 | `title`   | `TEXT`             | Title from frontmatter                 |
-| `tags`    | `TEXT`             | JSON array of tags, or null            |
 | `content` | `TEXT NOT NULL`    | Markdown source (frontmatter stripped) |
 
 ## Example Queries
@@ -97,14 +97,6 @@ SELECT p.path, p.title
 FROM pages_fts f
 JOIN pages p ON p.rowid = f.rowid
 WHERE pages_fts MATCH 'title:setup';
-```
-
-**Filter by tag** — find pages with a specific tag (tags are stored as JSON arrays):
-
-```sql
-SELECT path, title
-FROM pages
-WHERE tags LIKE '%"guide"%';
 ```
 
 **Snippet extraction** — return a highlighted excerpt around the matching term:
