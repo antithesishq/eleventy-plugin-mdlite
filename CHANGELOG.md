@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 2026-03-05
 
 - Removed porter stemming from FTS index
 - Switch template processing from Liquid to Nunjucks
