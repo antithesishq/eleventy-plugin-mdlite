@@ -1,6 +1,6 @@
-import { describe, it, before, after } from "node:test";
 import { rm } from "node:fs/promises";
 import { join } from "node:path";
+import { after, before, describe, it } from "node:test";
 import Eleventy from "@11ty/eleventy";
 import { assertSnapshotsMatch } from "./snapshot.js";
 

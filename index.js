@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import Database from "better-sqlite3";
 import nunjucks from "nunjucks";
@@ -47,16 +47,12 @@ function stripFrontmatter(raw) {
 }
 
 export default function mdlitePlugin(eleventyConfig, options = {}) {
-  const {
-    dbFilename = "sqlite.db",
-    pathPrefix = "/",
-    header = "",
-  } = options;
+  const { dbFilename = "sqlite.db", pathPrefix = "/", header = "" } = options;
 
   // Normalize to "/prefix/" form so startsWith() works on URLs.
   // "docs", "/docs", "/docs/" all become "/docs/"; "/" stays as "/".
   const normalizedPrefix =
-    pathPrefix === "/" ? "/" : "/" + pathPrefix.replace(/^\/|\/$/g, "") + "/";
+    pathPrefix === "/" ? "/" : `/${pathPrefix.replace(/^\/|\/$/g, "")}/`;
   const pageDataByInputPath = new Map();
 
   eleventyConfig.addCollection("__mdlite_capture", (collectionApi) => {
@@ -82,9 +78,9 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
           const tok = parser.nextToken();
           const src = parser.tokens.str;
           const tagStart = src.lastIndexOf("{%", parser.tokens.index);
-          const args = parser.parseSignature(null, true);
+          parser.parseSignature(null, true);
           parser.advanceAfterBlockEnd(tok.value);
-          parser.parseUntilBlocks("end" + name);
+          parser.parseUntilBlocks(`end${name}`);
           parser.advanceAfterBlockEnd();
           const rawText = src.slice(tagStart, parser.tokens.index);
           const rawNode = new nodes.Literal(tok.lineno, tok.colno, rawText);
@@ -193,12 +189,12 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
       let mdOutputPath;
       if (result.url.endsWith("/")) {
         const trimmed = result.url.slice(0, -1) || "/index";
-        mdOutputPath = join(outputDir, trimmed + ".md");
+        mdOutputPath = join(outputDir, `${trimmed}.md`);
       } else {
-        mdOutputPath = join(outputDir, result.url + ".md");
+        mdOutputPath = join(outputDir, `${result.url}.md`);
       }
       await mkdir(dirname(mdOutputPath), { recursive: true });
-      const output = header ? header + "\n\n" + content : content;
+      const output = header ? `${header}\n\n${content}` : content;
       await writeFile(mdOutputPath, output);
 
       insertPage.run(result.url, data.title ?? null, content);

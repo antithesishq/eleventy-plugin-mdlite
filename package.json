@@ -5,6 +5,8 @@
   "description": "Eleventy plugin that copies raw markdown to output and generates a SQLite index",
   "main": "index.js",
   "scripts": {
+    "lint": "biome check .",
+    "format": "biome check --write .",
     "test": "node --test test/*.test.js"
   },
   "dependencies": {
@@ -14,5 +16,8 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "@11ty/eleventy": "^3.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4"
   }
 }

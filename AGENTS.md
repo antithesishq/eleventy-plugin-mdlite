@@ -18,6 +18,6 @@ The goal of this project is to make it easier for LLM agents to consume websites
 
 1. ensure that all changes are reflected by spec.md, update that first if needed, but make sure to confirm changes with the developer.
 2. practice red-green TDD; write tests first, confirm that they demonstrate the desired feature or change, then iterate on code until tests pass
-3. test, lint, and clean up unused code before finishing
+3. test, lint, and format code before finishing
 
 Golden rule: always leave the project in a better state than when you started.

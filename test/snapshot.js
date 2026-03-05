@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, writeFile, readdir, mkdir } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import Database from "better-sqlite3";
 
@@ -103,11 +103,11 @@ export async function assertSnapshotsMatch(outputDir, snapshotDir) {
   for (const dbRelPath of dbFiles) {
     const dbPath = join(outputDir, dbRelPath);
     const actual = dumpSqlite(dbPath);
-    const snapJsonPath = join(snapshotDir, dbRelPath + ".json");
+    const snapJsonPath = join(snapshotDir, `${dbRelPath}.json`);
 
     if (update) {
       await mkdir(join(snapJsonPath, ".."), { recursive: true });
-      await writeFile(snapJsonPath, JSON.stringify(actual, null, 2) + "\n");
+      await writeFile(snapJsonPath, `${JSON.stringify(actual, null, 2)}\n`);
     } else {
       const expected = JSON.parse(await readFile(snapJsonPath, "utf8"));
       assert.deepEqual(

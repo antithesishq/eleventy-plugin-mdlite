@@ -1,7 +1,7 @@
-import { describe, it, before, after } from "node:test";
 import assert from "node:assert/strict";
-import { readFile, rm, access, stat } from "node:fs/promises";
+import { access, readFile, rm } from "node:fs/promises";
 import { join } from "node:path";
+import { after, before, describe, it } from "node:test";
 import Eleventy from "@11ty/eleventy";
 import Database from "better-sqlite3";
 
@@ -37,14 +37,26 @@ describe("eleventy-plugin-mdlite", () => {
 
     it("strips frontmatter from copied files", async () => {
       const content = await readFile(join(outputDir, "docs/foo.md"), "utf8");
-      assert.ok(!content.startsWith("---"), "output should not start with frontmatter delimiter");
-      assert.ok(!content.includes("title: Foo"), "output should not contain frontmatter fields");
-      assert.ok(!content.includes("layout: false"), "output should not contain frontmatter fields");
+      assert.ok(
+        !content.startsWith("---"),
+        "output should not start with frontmatter delimiter",
+      );
+      assert.ok(
+        !content.includes("title: Foo"),
+        "output should not contain frontmatter fields",
+      );
+      assert.ok(
+        !content.includes("layout: false"),
+        "output should not contain frontmatter fields",
+      );
     });
 
     it("preserves horizontal rules in content", async () => {
       const content = await readFile(join(outputDir, "docs/foo.md"), "utf8");
-      assert.ok(content.includes("---"), "output should preserve horizontal rules");
+      assert.ok(
+        content.includes("---"),
+        "output should preserve horizontal rules",
+      );
     });
 
     it("does not emit empty pages as markdown files", async () => {
@@ -139,7 +151,7 @@ describe("eleventy-plugin-mdlite", () => {
     it("preserves fenced code block contents", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
-        content.includes('${{ secrets.GH_PAT }}'),
+        content.includes("${{ secrets.GH_PAT }}"),
         "code block should preserve Liquid-like variable syntax",
       );
       assert.ok(
@@ -292,7 +304,6 @@ describe("eleventy-plugin-mdlite", () => {
         .get(page.rowid);
       assert.equal(fts.content, page.content);
     });
-
   });
 });
 
@@ -357,7 +368,6 @@ describe("eleventy-plugin-mdlite with header", () => {
     }
   });
 });
-
 
 describe("eleventy-plugin-mdlite with pathPrefix", () => {
   const prefixedOutputDir = join(fixturesDir, "_site_prefixed");
