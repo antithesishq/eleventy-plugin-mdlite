@@ -285,7 +285,7 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(rows.some((r) => r.path === "/"));
     });
 
-it("FTS index reads content from pages table", () => {
+    it("FTS index reads content from pages table", () => {
       const page = db
         .prepare("SELECT rowid, content FROM pages WHERE path = ?")
         .get("/docs/foo/");
