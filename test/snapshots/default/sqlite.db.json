@@ -1,0 +1,32 @@
+{
+  "pages": {
+    "columns": ["path", "title", "content"],
+    "rows": [
+      {
+        "path": "/",
+        "title": "Home",
+        "content": "# Welcome\n\nThis is the home page.\n\nExpanded snippet value\n\n[Contact us](/contact/)\n\n\n\nExpanded snippet value\n\n<ul><li>Home</li></ul>\n\n6\n\nThis content was included from a shared file.\n\n\n{% highlight \"js\" %}const x = 1;{% endhighlight %}\n\n<img src=\"/image.png\">\n\n{% tabs %}\ntab content\n{% endtabs %}\n\nBelow is a fenced code block with template-like syntax that must be preserved:\n\n\n```yaml\npassword: ${{ secrets.GH_PAT }}\n```\n\n```cpp\nSOMETIMES(x > 0, \"positive input\", {{\"input\", x}});\n```\n\n"
+      },
+      {
+        "path": "/docs/directives/",
+        "title": "Directives",
+        "content": "# Directives\n\n:::note\nThis is a note container directive.\n:::\n\n:::warning\nThis is a warning.\n:::\n\n**Bold text**{.purple} and a heading {id=\"section-anchor\"}\n\nPress <kbd>Ctrl</kbd>+<kbd>C</kbd> to copy. Use <small>fine print</small> for details.\n"
+      },
+      {
+        "path": "/docs/draft-post/",
+        "title": "Draft Post",
+        "content": "# Draft\n\nThis is a draft post.\n"
+      },
+      {
+        "path": "/docs/foo/",
+        "title": "Foo",
+        "content": "# Foo\n\nThis is the foo page with some **bold** text and *italic* words.\n\n## Installation\n\nYou can install the package using `npm install mdlite` from the terminal.\n\nHere is a fenced code block:\n\n```javascript\nconst plugin = require(\"mdlite\");\nmodule.exports = function(config) {\n  config.addPlugin(plugin);\n};\n```\n\n## Features\n\n- Supports **full-text search** via SQLite\n- Strips _frontmatter_ automatically\n- Handles [links](https://example.com) and ![images](logo.png \"Logo\")\n\n1. First ordered item\n2. Second ordered item\n3. Third ordered item\n\n> This is a blockquote with **nested bold** and a [link](https://example.com).\n\n## Advanced Usage\n\nHere is some ***bold italic*** text and inline `code spans` everywhere.\n\nThe word kaleidoscope appears here as a unique needle for search testing.\n\n---\n\nCheck the [documentation](https://example.com/docs) for more details.\n"
+      },
+      {
+        "path": "/docs/sdk-page/",
+        "title": "Example SDK",
+        "content": "## Overview\n\nThe Example SDK enables you to integrate your applications.\n\n[Contact us](/contact/) if you want to use a different version.\n\n### Functionality\n\nLike our other SDKs, it offers three main types of functionality:\n\n* The [assert](/docs/generated/sdk/assert/) functions define test properties about your software.\n* The [random](/docs/generated/sdk/random/) functions request randomness from the platform.\n\n:::note\nThe SDK includes several other modules that you **should never directly use in your code.**\n:::\n\n### Instrumentation\n\nThe platform includes an instrumentor that handles *assertion cataloging*. See [Instrumentation](/docs/instrumentation/) for details.\n\nThis content was included from a shared file.\n\n\n:::tip\nCompile your software to run on x86-64 CPUs.\n:::\n\n### Using the SDK\n\nThe basic workflow is:\n\n1. Include the SDK in your dependencies:\n\n```py\npython -m pip install example-sdk\n```\n\n2. Import the SDK:\n```py\nfrom example.assertions import sometimes\n```\n\n### SDK runtime behavior{id=\"sdk-runtime-behavior\"}\n\nFunctions in the [assert](/docs/generated/sdk/assert/) and [lifecycle](/docs/generated/sdk/lifecycle/) have 2 modes.\n\n## Further reading\n\n<ul><li>Example SDK</li></ul>\n"
+      }
+    ]
+  }
+}

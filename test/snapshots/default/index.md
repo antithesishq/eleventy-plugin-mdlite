@@ -1,29 +1,25 @@
----
-title: Home
-layout: false
----
-
 # Welcome
 
 This is the home page.
 
-{{ snippet }}
+Expanded snippet value
 
-{{ docsub.contact_us }}
+[Contact us](/contact/)
 
-{{ unknown_var }}
 
-{{ snippet | fake_filter }}
 
-{{ docsub.contact_us | list_nav_children("Home") | safe }}
+Expanded snippet value
 
-{{ collections.all | foo }}
+<ul><li>Home</li></ul>
 
-{% include 'shared_content.md' %}
+6
+
+This content was included from a shared file.
+
 
 {% highlight "js" %}const x = 1;{% endhighlight %}
 
-{% pic "/image.png" %}
+<img src="/image.png">
 
 {% tabs %}
 tab content
@@ -31,7 +27,7 @@ tab content
 
 Below is a fenced code block with template-like syntax that must be preserved:
 
-{% raw %}
+
 ```yaml
 password: ${{ secrets.GH_PAT }}
 ```
@@ -39,4 +35,4 @@ password: ${{ secrets.GH_PAT }}
 ```cpp
 SOMETIMES(x > 0, "positive input", {{"input", x}});
 ```
-{% endraw %}
+

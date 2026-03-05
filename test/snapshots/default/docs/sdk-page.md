@@ -1,0 +1,50 @@
+## Overview
+
+The Example SDK enables you to integrate your applications.
+
+[Contact us](/contact/) if you want to use a different version.
+
+### Functionality
+
+Like our other SDKs, it offers three main types of functionality:
+
+* The [assert](/docs/generated/sdk/assert/) functions define test properties about your software.
+* The [random](/docs/generated/sdk/random/) functions request randomness from the platform.
+
+:::note
+The SDK includes several other modules that you **should never directly use in your code.**
+:::
+
+### Instrumentation
+
+The platform includes an instrumentor that handles *assertion cataloging*. See [Instrumentation](/docs/instrumentation/) for details.
+
+This content was included from a shared file.
+
+
+:::tip
+Compile your software to run on x86-64 CPUs.
+:::
+
+### Using the SDK
+
+The basic workflow is:
+
+1. Include the SDK in your dependencies:
+
+```py
+python -m pip install example-sdk
+```
+
+2. Import the SDK:
+```py
+from example.assertions import sometimes
+```
+
+### SDK runtime behavior{id="sdk-runtime-behavior"}
+
+Functions in the [assert](/docs/generated/sdk/assert/) and [lifecycle](/docs/generated/sdk/lifecycle/) have 2 modes.
+
+## Further reading
+
+<ul><li>Example SDK</li></ul>
