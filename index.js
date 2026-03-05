@@ -20,7 +20,7 @@ function createSchema(db) {
       content,
       content=pages,
       content_rowid=rowid,
-      tokenize='porter unicode61'
+      tokenize='unicode61'
     );
     INSERT INTO pages_fts(pages_fts, rank) VALUES('rank', 'bm25(5.0, 1.0)')
   `);

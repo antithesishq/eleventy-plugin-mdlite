@@ -91,8 +91,8 @@ shortcodes executed, and paired shortcodes passed through.
 
 As a site author, the database includes a pages_fts FTS5 virtual table
 that indexes the title and content columns. I can run MATCH queries
-against it. The FTS index uses the porter tokenizer with unicode61, so
-stemmed searches work (searching "Welcomed" matches "Welcome").
+against it. The FTS index uses the unicode61 tokenizer for Unicode-aware
+word segmentation and case-insensitive matching.
 
 ### The header option prepends text to output files
 

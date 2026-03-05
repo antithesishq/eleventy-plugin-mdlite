@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Removed porter stemming from FTS index
 - Switch template processing from Liquid to Nunjucks
 - Expand Nunjucks variables, filters, and includes in markdown output
 - Execute unpaired shortcodes and pass through paired shortcodes
@@ -23,6 +24,6 @@
 
 - Initial release
 - Add configurable `pathPrefix` option to scope indexed pages
-- Add SQLite FTS5 full-text search index with porter stemming
+- Add SQLite FTS5 full-text search index
 - Add SQLite query documentation
 - Copy raw markdown files to output directory

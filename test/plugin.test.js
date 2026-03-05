@@ -285,17 +285,7 @@ describe("eleventy-plugin-mdlite", () => {
       assert.ok(rows.some((r) => r.path === "/"));
     });
 
-    it("supports porter stemming", () => {
-      // "Welcomed" should match content containing "Welcome" via stemming
-      const rows = db
-        .prepare(
-          "SELECT p.path FROM pages p JOIN pages_fts f ON p.rowid = f.rowid WHERE pages_fts MATCH ?",
-        )
-        .all("Welcomed");
-      assert.ok(rows.some((r) => r.path === "/"));
-    });
-
-    it("FTS index reads content from pages table", () => {
+it("FTS index reads content from pages table", () => {
       const page = db
         .prepare("SELECT rowid, content FROM pages WHERE path = ?")
         .get("/docs/foo/");

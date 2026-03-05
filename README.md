@@ -108,7 +108,7 @@ JOIN pages p ON p.rowid = f.rowid
 WHERE pages_fts MATCH 'install';
 ```
 
-> The FTS5 index uses the `porter` tokenizer (stemming) and `unicode61`, so a search for `"installs"` will also match `"install"`, `"installed"`, etc.
+> The FTS5 index uses the `unicode61` tokenizer for Unicode-aware word segmentation and case-insensitive matching.
 
 ## Limitations
 
