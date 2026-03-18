@@ -133,13 +133,15 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
     const outputDir = directories.output;
 
     // Filter to markdown inputs with valid output under pathPrefix
-    const mdResults = results.filter((r) => {
-      return (
-        r.inputPath.endsWith(".md") &&
-        r.outputPath &&
-        r.url.startsWith(normalizedPrefix)
-      );
-    });
+    const mdResults = results
+      .filter((r) => {
+        return (
+          r.inputPath.endsWith(".md") &&
+          r.outputPath &&
+          r.url.startsWith(normalizedPrefix)
+        );
+      })
+      .sort();
 
     const dbDir =
       normalizedPrefix === "/"
