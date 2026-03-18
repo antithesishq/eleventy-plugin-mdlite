@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import Database from "better-sqlite3";
 
