@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1 2026-03-18
+
+- Sort results before creating schema for deterministic SQLite output
+- Bump liquidjs to fix audit vulnerability (GHSA-wmfp-5q7x-987x)
+- Update biome to 2.4.7
+- Add Dependabot configuration
+
 ## 0.3.0 2026-03-05
 
 - Removed porter stemming from FTS index
