@@ -90,7 +90,7 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
             new nodes.NodeList(tok.lineno, tok.colno, [rawNode]),
           );
         },
-        run(context, rawText) {
+        run(_context, rawText) {
           return new nunjucks.runtime.SafeString(rawText);
         },
       });
@@ -106,7 +106,7 @@ export default function mdlitePlugin(eleventyConfig, options = {}) {
           parser.advanceAfterBlockEnd(tok.value);
           return new nodes.CallExtensionAsync(this, "run", args);
         },
-        run(context, ...args) {
+        run(_context, ...args) {
           const cb = args.pop();
           try {
             const result = fn(...args);
