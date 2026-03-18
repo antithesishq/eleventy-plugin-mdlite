@@ -151,6 +151,7 @@ describe("eleventy-plugin-mdlite", () => {
     it("preserves fenced code block contents", async () => {
       const content = await readFile(join(outputDir, "index.md"), "utf8");
       assert.ok(
+        // biome-ignore lint/suspicious/noTemplateCurlyInString: false positive
         content.includes("${{ secrets.GH_PAT }}"),
         "code block should preserve Liquid-like variable syntax",
       );
@@ -405,9 +406,6 @@ describe("eleventy-plugin-mdlite with pathPrefix", () => {
     });
 
     it("does not copy markdown files outside the prefix", async () => {
-      // index.md at root should still exist (eleventy writes it) but
-      // the plugin should not have indexed it
-      const rows = db.prepare("SELECT COUNT(*) as count FROM pages").get();
       // only docs/foo and docs/draft-post
       for (const r of db.prepare("SELECT path FROM pages").all()) {
         assert.ok(
